@@ -20,9 +20,9 @@ npm install
 
 // Note: install 2.8.2 and above as 2.8.2 is the latest stable version
 npm install @chakra-ui/react@^2.8.2
-
 npm install @emotion/react @emotion/styled framer-motion
 npm install react-router-dom
+npm i @chakra-ui/icons
 
 
 ## Reinstall if having issues to start the app
@@ -134,9 +134,16 @@ function App() {
 
 export default App;
 ```
+**Quiz Time**: What are `<Router>`, `<Routes>` and `<Route>`? Why are they used together?
+- `<Router>`: provides the routing context. It listens to changes in the browser's URL and provides the current location to its children, enabling them to render the appropriate components based on the URL.
+- `<Routes>`: used to define different routes in your application. It wraps around `<Route>` components.
+- `<Route>`: specifies individual paths and components to render when the URL matches the path.
+- Dependency: `<Routes>` relies on the context provided by `<Router>` to function correctly. Without `<Router>`, `<Routes>` will not know how to match the current URL to the defined routes.
+
+
 
 ### 3. Add Components: `Login.jsx`, `Register.jsx`, `UserProfile.jsx`
-place them in `frontend/src/components`
+place them in `frontend/src/components/`
 ```jsx
 // Login.jsx
 import React from 'react';
@@ -151,3 +158,7 @@ function Login() {
 
 export default Login;
 ```
+
+## Workflow Step 3 - Login, Registration
+### 1. Customize login and restration page
+- [templates](https://chakra-templates.vercel.app/forms/authentication)

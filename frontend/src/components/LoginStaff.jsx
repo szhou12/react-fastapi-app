@@ -5,6 +5,7 @@ import {
     FormControl,
     FormLabel,
     Input,
+    Checkbox,
     Stack,
     Button,
     Heading,
@@ -14,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 
-export default function Login() {
+export default function LoginStaff() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,9 +34,9 @@ export default function Login() {
     >
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Welcome Back</Heading>
+          <Heading fontSize={'4xl'}>Hello Staff!</Heading>
           <Text fontSize={'lg'} color={'ui.dim'}>
-            Log in to enjoy our cool features! 😃
+            Log in to access our console
           </Text>
         </Stack>
         <Box
@@ -68,31 +69,18 @@ export default function Login() {
                   align={'start'}
                   justify={'space-between'}
                 >
-                  <Link
-                    as={RouterLink}
-                    to="/forgot-password"
-                    color={'ui.main'}
-                    _hover={{ color: '#00766C' }}
-                  >
-                    Forgot password?
-                  </Link>
+                  <Checkbox>is admin?</Checkbox>
+                  
                 </Stack>
                 <Button
                   type="submit"
                   variant="primary"
                 >
-                  Log in
+                  Sign in
                 </Button>
                 <Text align={'center'}>
                   Don't have an account?{' '}
-                  <Link
-                    as={RouterLink}
-                    to="/register"
-                    color={'ui.main'}
-                    _hover={{ color: '#00766C' }}
-                  >
-                    Register here
-                  </Link>
+                  Please contact admin.
                 </Text>
               </Stack>
             </Stack>

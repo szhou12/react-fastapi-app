@@ -22,7 +22,7 @@ export default function HomeScreen() {
         left={4}
         zIndex={1}
         _hover={{bg: 'ui.dim'}}
-        onClick={() => navigate('/profile')} // Add onClick for routing
+        onClick={() => navigate('/login-staff')} // Add onClick for routing
       >
         Login As Staff
       </Button>
