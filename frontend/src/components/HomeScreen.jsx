@@ -1,5 +1,5 @@
 'use client';
-
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Flex,
@@ -11,6 +11,8 @@ import {
 } from '@chakra-ui/react';
 
 export default function HomeScreen() {
+  const navigate = useNavigate();
+
   return (
     <Stack minH={'100vh'} position="relative">
       <Button
@@ -20,6 +22,7 @@ export default function HomeScreen() {
         left={4}
         zIndex={1}
         _hover={{bg: 'ui.dim'}}
+        onClick={() => navigate('/profile')} // Add onClick for routing
       >
         Login As Staff
       </Button>
@@ -51,10 +54,10 @@ export default function HomeScreen() {
             以RMI的海量能源数据与分析作支撑, 为您创建客制化的AI咨询服务
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-            <Button rounded={'full'} variant='primary'>
+            <Button rounded={'full'} variant='primary' onClick={() => navigate('/login')}>
               Log In
             </Button>
-            <Button rounded={'full'} bg={'ui.secondary'} color={'ui.darkSlate'}>
+            <Button rounded={'full'} bg={'ui.secondary'} color={'ui.darkSlate'} onClick={() => navigate('/register')}>
                 Sign Up
             </Button>
           </Stack>

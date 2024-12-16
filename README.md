@@ -5,6 +5,9 @@
 ### Version
 - Node.js: v22.12.0
 - npm: 10.9.2
+- chakra-ui: 2.8.2
+- react-router-dom: 7.0.2
+
 ### Install
 ```linux
 npm create vite@latest frontend --template react
@@ -19,15 +22,33 @@ npm install
 npm install @chakra-ui/react@^2.8.2
 
 npm install @emotion/react @emotion/styled framer-motion
+npm install react-router-dom
+
+
+## Reinstall if having issues to start the app
+# Remove node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
+# Clear npm cache (optional)
+sudo npm cache clean --force
+
+# Reinstall all dependencies
+npm install
 ```
 
-## Workflow
+## Start the App
+```linux
+// under /frontend
+npm run dev
+```
+
+## Workflow Step 1 - Home Screen
 
 ### 1. Customize Theme `frontend/src/theme.jsx`
 1. create a `theme.jsx` file in `frontend/src/`
 2. add customized code
 
-### 2. Create a New Component
+### 2. Create a New Component 'HomeScreen'
 1. create a new directory in `frontend/src/components`
 2. create a new file in the directory, e.g. `HomeScreen.jsx`
 3. In `HomeScreen.jsx`, copy and paste the template code from [Chakra Templates Hero - Split Screen with Image](https://chakra-templates.vercel.app/page-sections/hero)
@@ -74,7 +95,59 @@ root.render(
 );
 ```
 
-## Start the App
-```linux
-npm run dev
+## Workflow Step 2 - Routing
+### 1. Edit `HomeScreen.jsx`
+Each of 3 buttons add `onClick` to navigate to the corresponding page:
+```jsx
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate(); // add this line in HomeScreen() body
+
+<Button 
+  ... // other props
+  onClick={() => navigate('/login')}
+>
+  Login
+</Button>
+```
+
+### 2. Edit `App.jsx`
+```jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeScreen from './components/HomeScreen';
+import Login from './components/Login';
+import Register from './components/Register';
+import UserProfile from './components/UserProfile';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<UserProfile />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+### 3. Add Components: `Login.jsx`, `Register.jsx`, `UserProfile.jsx`
+place them in `frontend/src/components`
+```jsx
+// Login.jsx
+import React from 'react';
+
+function Login() {
+    return (
+        <div>
+            <h1>This is Login Page</h1>
+        </div>
+    );
+}
+
+export default Login;
 ```
