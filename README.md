@@ -1,10 +1,15 @@
 # React + FastAPI Learning Project
 
 ## Table of Contents
-- [SetUp](#setup)
-- [Start the App](#start-the-app)
 - [Milestones](#milestones)
   - [Stage 1 - Static Home, Login, Register Pages](#stage-1---static-home-login-register-pages)
+- [SetUp](#setup)
+- [Start the App](#start-the-app)
+
+
+## Milestones
+1. [Stage 1 - Static Home, Login, Register Pages](https://github.com/szhou12/react-fastapi-app/blob/main/v1-HomeScreen.md)
+
 
 ## SetUp
 ### Version
@@ -47,5 +52,34 @@ npm install
 npm run dev
 ```
 
-## Milestones
-1. [Stage 1 - Static Home, Login, Register Pages](https://github.com/szhou12/react-fastapi-app/blob/main/v1-HomeScreen.md)
+## Git Branch for Tracking Milestones
+1. Check what branch currently on
+```linux
+git branch
+
+// or
+git status
+```
+2. create a new branch ("v1-code") based on the branch you are currently on
+```linux
+git checkout -b v1-code
+```
+3. Add your changes, commit them, and push this new branch
+```linux
+git add .
+
+git commit -m "version 1 code"
+
+git push -u origin v1-code // FIRST time you’re pushing a branch to the remote repository, you need to specify the branch name!
+
+git push // subsequent push can write like this
+```
+
+4. create next branch ("v2-code") from a specified branch ("v1-code")
+```linux
+git checkout -b v2-code v1-code
+```
+5. compare differences between branches to track progress:
+```linux
+git diff v1-code..v2-code
+```
