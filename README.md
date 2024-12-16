@@ -48,4 +48,4 @@ npm run dev
 ```
 
 ## Milestones
-1. [Stage 1 - Static Home, Login, Register Pages]()
+1. [Stage 1 - Static Home, Login, Register Pages](https://github.com/szhou12/react-fastapi-app/blob/main/v1-HomeScreen.md)
