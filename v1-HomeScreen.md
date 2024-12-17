@@ -1,5 +1,23 @@
 # React - Static Home, Login, Register Pages
 
+## Structure
+```
+react-fastapi-app/
+├── frontend/
+│   └── src/
+│       ├── App.jsx
+│       ├── main.jsx
+│       ├── theme.jsx
+│       └── componets/
+│	     │
+│            ├── HomeScreen.jsx
+│            ├── Register.jsx
+│            ├── LoginStaff.jsx
+│            └── Login.js
+│
+└── v1-HomeScreen.md
+```
+
 ## Workflow Step 1 - Home Screen
 
 ### 1. Customize Theme `frontend/src/theme.jsx`
