@@ -9,7 +9,6 @@ react-fastapi-app/
 │       ├── main.jsx
 │       ├── theme.jsx
 │       └── componets/
-│	     │
 │            ├── HomeScreen.jsx
 │            ├── Register.jsx
 │            ├── LoginStaff.jsx
