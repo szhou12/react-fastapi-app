@@ -13,16 +13,20 @@ import {
     useColorModeValue,
     Link,
 } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 export default function LoginStaff() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Add your login logic here
     console.log('Login attempt with:', { email, password });
+    // For now, always navigate to staff dashboard regardless of input
+    navigate('/dashboard');
   };
 
   return (
