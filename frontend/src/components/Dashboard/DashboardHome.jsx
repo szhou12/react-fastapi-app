@@ -73,7 +73,7 @@ const LinkCard = ({ heading, description, icon, href }) => {
 export default function DashboardHome() {
   return (
     <Flex>
-      <Sidebar />
+      {/* <Sidebar /> */}
       <Box flex="1" p={8}>
         <Stack spacing={4} maxW={'3xl'} textAlign={'center'}>
           <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'} color={'ui.darkSlate'}>

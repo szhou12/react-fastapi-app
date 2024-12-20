@@ -14,12 +14,7 @@ import {
     Stack,
     Icon,
   } from "@chakra-ui/react"
-  import {
-    FcConferenceCall,
-    FcFinePrint,
-    FcGlobe,
-  } from 'react-icons/fc'
-  import { FiMenu } from "react-icons/fi"
+  import { FiGlobe, FiHome, FiFilePlus, FiUsers, FiMenu } from "react-icons/fi"
   import { Link as RouterLink } from "react-router-dom"
   
   const Sidebar = () => {
@@ -29,10 +24,10 @@ import {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const navItems = [
-      { name: 'Home', path: '/', icon: FiMenu },
-      { name: 'Scraper', path: '/scraper', icon: FcGlobe },
-      { name: 'Uploader', path: '/uploader', icon: FcFinePrint },
-      { name: 'Admin', path: '/admin', icon: FcConferenceCall },
+      { name: 'Home', path: '/', icon: FiHome },
+      { name: 'Scraper', path: '/scraper', icon: FiGlobe },
+      { name: 'Uploader', path: '/uploader', icon: FiFilePlus },
+      { name: 'Admin', path: '/admin', icon: FiUsers },
     ]
   
     const SidebarContent = () => (
