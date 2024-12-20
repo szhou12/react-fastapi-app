@@ -14,11 +14,13 @@ import {
     Link,
 } from '@chakra-ui/react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 export default function LoginStaff() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   
   const handleSubmit = async (e) => {
@@ -26,7 +28,10 @@ export default function LoginStaff() {
     // Add your login logic here
     console.log('Login attempt with:', { email, password });
     // For now, always navigate to staff dashboard regardless of input
-    navigate('/dashboard');
+    if (email && password) {
+      login();  // Set authenticated to true
+      navigate('/dashboard');  // Redirect to dashboard
+    }
   };
 
   return (

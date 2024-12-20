@@ -19,7 +19,7 @@ import {
   FcFinePrint,
   FcGlobe,
 } from 'react-icons/fc'
-import Sidebar from './Sidebar'
+import Sidebar from '../Sidebar'
 
 // interface CardProps {
 //   heading: string
@@ -70,7 +70,7 @@ const LinkCard = ({ heading, description, icon, href }) => {
   )
 }
 
-export default function Dashboard() {
+export default function DashboardHome() {
   return (
     <Flex>
       <Sidebar />
