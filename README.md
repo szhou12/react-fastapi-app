@@ -5,7 +5,9 @@
   - [Stage 1 - Static Home, Login, Register Pages](#stage-1---static-home-login-register-pages)
 - [SetUp](#setup)
 - [Start the App](#start-the-app)
-- [Git Branch for Tracking Milestones](#git-branch-for-tracking-milestones)
+- [Git](#git)
+  - [Git Branch for Tracking Milestones](#git-branch-for-tracking-milestones)
+  - [Git Merge Branches](#git-merge-branches)
 
 ## Milestones
 1. [Stage 1 - Static Home, Login, Register Pages](https://github.com/szhou12/react-fastapi-app/blob/main/v1-HomeScreen.md)
@@ -28,11 +30,14 @@ cd frontend
 
 npm install
 
-// Note: install 2.8.2 and above as 2.8.2 is the latest stable version
-npm install @chakra-ui/react@^2.8.2
+
+npm install @chakra-ui/react@^2.8.2   // Note: install 2.8.2 and above as 2.8.2 is the latest stable version
 npm install @emotion/react @emotion/styled framer-motion
 npm install react-router-dom
-npm i @chakra-ui/icons
+npm install @chakra-ui/icons
+npm install @tanstack/react-query
+npm install @tanstack/react-query-devtools
+npm install @tanstack/react-router
 
 
 ## Reinstall if having issues to start the app
@@ -52,7 +57,10 @@ npm install
 npm run dev
 ```
 
-## Git Branch for Tracking Milestones
+## Git
+### Git Branch for Tracking Milestones
+Every time I achieve a milestone (a big progress), I will stage the current verion in the current branch and create a new branch for inheriting the existing progress and working on the next milestone.
+
 1. Check what branch currently on
 ```linux
 git branch
@@ -89,3 +97,39 @@ git checkout -b v2-code v1-code
 ```linux
 git diff v1-code..v2-code
 ```
+
+### Git Merge Branches
+Keep `main` up-to-date with the latest version (i.e. the latest working branch). Conduct step 1, 2, 3, 4 if and only if you want to bring some ahead commits in `main` to `lastest-working-branch`. If `main` is totally behind `lastest-working-branch`, skip step 1, 2, 3, 4.
+
+1. Switch to the latest working branch
+```linux
+git checkout lastest-working-branch
+```
+2. Bring ahead commits in `main` to `lastest-working-branch`
+```linux
+git merge main
+```
+This may open up a text editor, leave necessary messages and type ESC and then `:wq` to save and exit.
+3. Resove Merge Conflicts if Arise
+    1. Open the conflicted files in your editor.
+    2. Look for conflict markers (e.g., <<<<<<<, =======, >>>>>>>).
+    3. Manually resolve the conflicts by keeping or modifying the appropriate changes.
+    4. Mark the file as resolved: `git add <conflicted-filename>`
+4. Commit the Merge
+```linux
+git commit -m "Merge main into v2-afterlogin"
+```
+5. Bring commits in `lastest-working-branch` to `main`
+    1. Switch to `main`: 
+    ```linux
+    git checkout main
+    ```
+    2. Merge `lastest-working-branch` to `main`: 
+        - `--ff-only` flag ensures a clean fast-forward merge if `main` is behind `lastest-working-branch`.
+    ```linux
+    git merge --ff-only lastest-working-branch
+    ```
+    3. Push the updated `main`:
+    ```linux
+    git push origin main
+    ```
