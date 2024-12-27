@@ -133,3 +133,8 @@ git commit -m "Merge main into v2-afterlogin"
     ```linux
     git push origin main
     ```
+
+## Notes on [full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
+- `frontend/src/client/sdk.gen.ts`: items CRUD
+- `frontend/src/routes/_layout/items.tsx`: Items Table
+- `frontend/src/client/types.gen.ts`: defined interfaces. e.g. ItemPublic, UserPublic
