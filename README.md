@@ -38,6 +38,7 @@ npm install @chakra-ui/icons
 npm install @tanstack/react-query
 npm install @tanstack/react-query-devtools
 npm install @tanstack/react-router
+npm install react-hook-form
 
 
 ## Reinstall if having issues to start the app
