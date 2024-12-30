@@ -22,7 +22,8 @@ const ActionsMenu = ({ type, value, disabled}) => {
             case "User":
                 return (
                     <EditUser
-                        user={value as UserPublic}
+                        // value as UserPublic
+                        user={value}
                         isOpen={editModal.isOpen}
                         onClose={editModal.onClose}
                     />
@@ -30,7 +31,8 @@ const ActionsMenu = ({ type, value, disabled}) => {
             case "Item1":
                 return (
                     <EditItem1
-                        item={value as Item1Public}
+                        // value as Item1Public
+                        item={value}
                         isOpen={editModal.isOpen}
                         onClose={editModal.onClose}
                     />
@@ -38,7 +40,8 @@ const ActionsMenu = ({ type, value, disabled}) => {
             case "Item2":
                 return (
                     <EditItem2
-                        item={value as Item2Public}
+                        // value as Item2Public
+                        item={value}
                         isOpen={editModal.isOpen}
                         onClose={editModal.onClose}
                     />

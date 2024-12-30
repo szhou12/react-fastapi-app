@@ -21,14 +21,11 @@ import {
 } from 'react-icons/fc'
 import Sidebar from '../Sidebar'
 
-// interface CardProps {
-//   heading: string
-//   description: string
-//   icon: ReactElement
-//   href: string
-// }
 
-
+// heading: string
+// description: string
+// icon: ReactElement
+// href: string
 const LinkCard = ({ heading, description, icon, href }) => {
   return (
     <LinkBox as="article">
@@ -72,41 +69,38 @@ const LinkCard = ({ heading, description, icon, href }) => {
 
 export default function DashboardHome() {
   return (
-    <Flex>
-      {/* <Sidebar /> */}
-      <Box flex="1" p={8}>
-        <Stack spacing={4} maxW={'3xl'} textAlign={'center'}>
-          <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'} color={'ui.darkSlate'}>
-            Home
-          </Heading>
-          <Text color={'ui.dim'} fontSize={{ base: 'sm', sm: 'lg' }}>
-            Choose the function you want to access
-          </Text>
-        </Stack>
+    <Box flex="1" p={8}>
+      <Stack spacing={4} maxW={'3xl'} textAlign={'center'}>
+        <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'} color={'ui.darkSlate'}>
+          Home
+        </Heading>
+        <Text color={'ui.dim'} fontSize={{ base: 'sm', sm: 'lg' }}>
+          Choose the function you want to access
+        </Text>
+      </Stack>
 
-        <Box mt={12}>
-          <Flex flexWrap="wrap" gridGap={6} justify="flex-start">
-            <LinkCard
-              heading={'Scraper'}
-              icon={<Icon as={FcGlobe} w={10} h={10} />}
-              description={'Scrape data from the Internet.'}
-              href={'#'}
-            />
-            <LinkCard
-              heading={'Uploader'}
-              icon={<Icon as={FcFinePrint} w={10} h={10} />}
-              description={'Upload file documents to the DB.'}
-              href={'#'}
-            />
-            <LinkCard
-              heading={'Admin'}
-              icon={<Icon as={FcConferenceCall} w={10} h={10} />}
-              description={'Manage currently registered users.'}
-              href={'#'}
-            />
-          </Flex>
-        </Box>
+      <Box mt={12}>
+        <Flex flexWrap="wrap" gridGap={6} justify="flex-start">
+          <LinkCard
+            heading={'Scraper'}
+            icon={<Icon as={FcGlobe} w={10} h={10} />}
+            description={'Scrape data from the Internet.'}
+            href={'/scraper'}
+          />
+          <LinkCard
+            heading={'Uploader'}
+            icon={<Icon as={FcFinePrint} w={10} h={10} />}
+            description={'Upload file documents to the DB.'}
+            href={'/uploader'}
+          />
+          <LinkCard
+            heading={'Admin'}
+            icon={<Icon as={FcConferenceCall} w={10} h={10} />}
+            description={'Manage currently registered users.'}
+            href={'/admin'}
+          />
+        </Flex>
       </Box>
-    </Flex>
+    </Box>
   )
 }

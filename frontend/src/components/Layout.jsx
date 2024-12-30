@@ -1,7 +1,7 @@
 import { Flex, Box, Spinner } from '@chakra-ui/react'
 import { Outlet } from "react-router-dom"
 import Sidebar from "./Sidebar"
-// import UserMenu from "./UserMenu"
+import UserMenu from "./UserMenu"
 
 function Layout() {
     const isLoading = false;
@@ -16,7 +16,7 @@ function Layout() {
             ) : (
                 <Outlet />
             )}
-            {/* <UserMenu /> */}
+            <UserMenu />
             
         </Flex>
     );

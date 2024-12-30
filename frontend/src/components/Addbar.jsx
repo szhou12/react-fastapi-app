@@ -20,3 +20,5 @@ const Addbar = ({ type, addModalAs}) => {
     )
 
 }
+
+export default Addbar
