@@ -11,9 +11,8 @@ import {
     Heading,
     Text,
     useColorModeValue,
-    Link,
 } from '@chakra-ui/react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import { useAuth } from '../hooks/useAuth';
 
 export default function LoginStaff() {
@@ -22,7 +21,6 @@ export default function LoginStaff() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Add your login logic here
@@ -30,7 +28,7 @@ export default function LoginStaff() {
     // For now, always navigate to staff dashboard regardless of input
     if (email && password) {
       login();  // Set authenticated to true
-      navigate('/dashboard');  // Redirect to dashboard
+      navigate({ to: '/dashboard' });
     }
   };
 

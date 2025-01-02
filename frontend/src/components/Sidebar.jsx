@@ -7,12 +7,10 @@ import {
     DrawerOverlay,
     Flex,
     IconButton,
+    Image,
     Text,
     useColorModeValue,
     useDisclosure,
-    Link,
-    Stack,
-    Icon,
 } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
 import { FiGlobe, FiHome, FiFilePlus, FiUsers, FiMenu, FiLogOut } from "react-icons/fi"

@@ -1,5 +1,5 @@
 'use client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import {
   Button,
   Flex,
@@ -22,7 +22,7 @@ export default function HomeScreen() {
         left={4}
         zIndex={1}
         _hover={{bg: 'ui.dim'}}
-        onClick={() => navigate('/login-staff')} // Add onClick for routing
+        onClick={() => navigate({ to: '/login-staff' })}
       >
         Login As Staff
       </Button>
@@ -54,11 +54,20 @@ export default function HomeScreen() {
             以RMI的海量能源数据与分析作支撑, 为您创建客制化的AI咨询服务
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-            <Button rounded={'full'} variant='primary' onClick={() => navigate('/login')}>
+            <Button 
+              rounded={'full'} 
+              variant='primary' 
+              onClick={() => navigate({ to: '/login' })}
+            >
               Log In
             </Button>
-            <Button rounded={'full'} bg={'ui.secondary'} color={'ui.darkSlate'} onClick={() => navigate('/register')}>
-                Sign Up
+            <Button 
+              rounded={'full'} 
+              bg={'ui.secondary'} 
+              color={'ui.darkSlate'} 
+              onClick={() => navigate({ to: '/register' })}
+            >
+              Sign Up
             </Button>
           </Stack>
         </Stack>

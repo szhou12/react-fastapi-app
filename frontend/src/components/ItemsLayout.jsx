@@ -74,7 +74,7 @@ function Items() {
             <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
                 Items Management TBD
             </Heading>
-            <Addbar type={"Item1"} addItem={addItem}/>
+            <Addbar type={"Item1"} addModalAs={addItem}/>
             <ItemsTable />
         </Container>
     )

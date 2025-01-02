@@ -19,7 +19,8 @@ import {
   FcFinePrint,
   FcGlobe,
 } from 'react-icons/fc'
-import Sidebar from '../Sidebar'
+import { Link } from '@tanstack/react-router'
+
 
 
 // heading: string
@@ -54,7 +55,7 @@ const LinkCard = ({ heading, description, icon, href }) => {
             {icon}
           </Flex>
           <Box mt={2} flex="1" overflow="hidden">
-            <LinkOverlay href={href}>
+            <LinkOverlay as={Link} to={href}>
               <Heading size="md" noOfLines={1}>{heading}</Heading>
             </LinkOverlay>
             <Text mt={1} fontSize={'sm'} noOfLines={2}>
@@ -70,7 +71,7 @@ const LinkCard = ({ heading, description, icon, href }) => {
 export default function DashboardHome() {
   return (
     <Box flex="1" p={8}>
-      <Stack spacing={4} maxW={'3xl'} textAlign={'center'}>
+      <Stack spacing={4} maxW={'3xl'} textAlign={'left'}>
         <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'} color={'ui.darkSlate'}>
           Home
         </Heading>
@@ -85,19 +86,19 @@ export default function DashboardHome() {
             heading={'Scraper'}
             icon={<Icon as={FcGlobe} w={10} h={10} />}
             description={'Scrape data from the Internet.'}
-            href={'/scraper'}
+            href={'/dashboard/scraper'}
           />
           <LinkCard
             heading={'Uploader'}
             icon={<Icon as={FcFinePrint} w={10} h={10} />}
             description={'Upload file documents to the DB.'}
-            href={'/uploader'}
+            href={'/dashboard/uploader'}
           />
           <LinkCard
             heading={'Admin'}
             icon={<Icon as={FcConferenceCall} w={10} h={10} />}
             description={'Manage currently registered users.'}
-            href={'/admin'}
+            href={'/dashboard/admin'}
           />
         </Flex>
       </Box>
