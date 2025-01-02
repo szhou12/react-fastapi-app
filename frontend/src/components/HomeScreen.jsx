@@ -14,18 +14,6 @@ export default function HomeScreen() {
   const navigate = useNavigate();
 
   return (
-    <Stack minH={'100vh'} position="relative">
-      <Button
-        variant="primary"
-        position="absolute"
-        top={4}
-        left={4}
-        zIndex={1}
-        _hover={{bg: 'ui.dim'}}
-        onClick={() => navigate({ to: '/login-staff' })}
-      >
-        Login As Staff
-      </Button>
     <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={6} w={'full'} maxW={'lg'}>
@@ -69,6 +57,14 @@ export default function HomeScreen() {
             >
               Sign Up
             </Button>
+            <Button
+              rounded={'full'} 
+              variant="danger"
+              _hover={{bg: 'ui.dim'}}
+              onClick={() => navigate({ to: '/login-staff' })}
+            >
+              Login As Staff
+            </Button>
           </Stack>
         </Stack>
       </Flex>
@@ -81,7 +77,6 @@ export default function HomeScreen() {
           }
         />
       </Flex>
-    </Stack>
     </Stack>
   );
 }

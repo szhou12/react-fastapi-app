@@ -19,7 +19,7 @@ import {
 import { Link, Outlet } from "@tanstack/react-router"
 import { FaUserTie } from "react-icons/fa"
 import { FiLogOut, FiUser, FiGlobe, FiHome, FiFilePlus, FiUsers } from "react-icons/fi"
-import Logo from "/assets/images/rmi-logo.svg"
+import Logo from "/assets/images/rmi_logo_horitzontal_no_tagline.svg"
 
 // Fake data
 const currentUser = {

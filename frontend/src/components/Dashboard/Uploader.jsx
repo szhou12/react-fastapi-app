@@ -24,6 +24,47 @@ import { FaPlus } from "react-icons/fa"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { FiEdit, FiTrash } from "react-icons/fi"
 
+// TODO: replace with actual function
+const EditItem1 = ({ item, isOpen, onClose }) => {
+    console.log('EditItem1 Modal opened with item:', item);
+    
+    return (
+        <div>
+            {/* Edit Item1 Modal for item: {item.name} */}
+        </div>
+    );
+};
+
+const EditItem2 = ({ item, isOpen, onClose }) => {
+    console.log('EditItem2 Modal opened with item:', item);
+    
+    return (
+        <div>
+            Edit Item2 Modal for item: {item.name}
+        </div>
+    );
+};
+
+const EditUser = ({ user, isOpen, onClose }) => {
+    console.log('EditUser Modal opened with user:', user);
+    
+    return (
+        <div>
+            Edit User Modal for item: {user.name}
+        </div>
+    );
+};
+
+const Delete = ({ type, id, isOpen, onClose }) => {
+    console.log(`Delete Modal opened for ${type} with ID:`, id);
+    
+    return (
+        <div>
+            {/* Delete {type} Modal for ID: {id} */}
+        </div>
+    );
+};
+
 // ActionsMenu
 const ActionsMenu = ({ type, value, disabled}) => {
     const editModal = useDisclosure()
@@ -240,17 +281,16 @@ export default function Uploader() {
     // TODO: replace with actual function
     const AddItem = ({ isOpen, onClose }) => {
         return (
-            // This is just a placeholder - replace with your actual modal component
-            <div>Add Item Modal</div>
+            <div></div>
         )
     }
 
     return (
         <Container maxW="full">
             <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
-                Items Management TBD
+                Files Management
             </Heading>
-            <Addbar type={"Item1"} addModalAs={AddItem}/>
+            <Addbar type={"File"} addModalAs={AddItem}/>
             <ItemsTable />
         </Container>
     );
