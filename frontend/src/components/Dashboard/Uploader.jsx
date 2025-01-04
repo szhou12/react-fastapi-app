@@ -19,6 +19,8 @@ import {
     Th,
     Thead,
     Tr,
+    Text,
+    Tooltip,
 } from '@chakra-ui/react'
 import { FaPlus } from "react-icons/fa"
 import { BsThreeDotsVertical } from "react-icons/bs"
@@ -253,8 +255,12 @@ function ItemsTable() {
                         <Tbody>
                             {items?.data.map(
                                 (item) => (
-                                    <Tr key={item.id} opacity={isPlaceholderData ? 0.5 : 1}>
-                                        <Td isTruncated maxWidth="150px">{item.name}</Td>
+                                    <Tr key={item.id} opacity={isPlaceholderData ? 0.5 : 1} _hover={{ bg: "gray.100" }}>
+                                        <Td isTruncated maxW={{ base: "150px", md: "300px", lg: "500px" }}>
+                                            <Tooltip label={item.name} hasArrow>
+                                                {item.name}
+                                            </Tooltip>
+                                        </Td>
                                         <Td>{item.totalPages}</Td>
                                         <Td>{item.dateAdded}</Td>
                                         <Td>{item.language}</Td>
