@@ -5,10 +5,13 @@ import DashboardScraper from './Dashboard/Scraper'
 import DashboardUploader from './Dashboard/Uploader'
 import DashboardAdmin from './Dashboard/Admin'
 import HomeScreen from './HomeScreen'
-import Login from './Login'
-import Register from './Register'
-import LoginStaff from './LoginStaff'
 import Chatbot from './Chatbot'
+// import Login from './Login'
+// import Register from './Register'
+// import LoginStaff from './LoginStaff'
+import LoginStaffPage from '../features/Auth/LoginStaffPage'
+import RegisterPage from '../features/Auth/RegisterPage'
+import LoginPage from '../features/Auth/LoginPage'
 
 // Create a root route
 const rootRoute = createRootRoute()
@@ -23,19 +26,19 @@ const indexRoute = createRoute({
 const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/login',
-  component: Login,
+  component: LoginPage,
 })
 
 const registerRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/register',
-  component: Register,
+  component: RegisterPage,
 })
 
 const loginStaffRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/login-staff',
-  component: LoginStaff,
+  component: LoginStaffPage,
 })
 
 const chatbotRoute = createRoute({
