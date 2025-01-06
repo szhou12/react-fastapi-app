@@ -19,7 +19,6 @@ import {
     Th,
     Thead,
     Tr,
-    Text,
     Tooltip,
 } from '@chakra-ui/react'
 import { FaPlus } from "react-icons/fa"
@@ -212,7 +211,23 @@ const fakeData = {
             dateAdded: "2024-12-01",
             language: "zh",
             fileSize: "12.01",
-        }
+        },
+        {
+            id: 6,
+            name: "react app.pdf",
+            totalPages: 230,
+            dateAdded: "2024-12-01",
+            language: "zh",
+            fileSize: "12.01",
+        },
+        {
+            id: 7,
+            name: "test.pdf",
+            totalPages: 12,
+            dateAdded: "2025-12-01",
+            language: "en",
+            fileSize: "12.01",
+        },
     ]
 }
 
