@@ -10,6 +10,48 @@ import { BsThreeDotsVertical } from "react-icons/bs"
 import { FiEdit, FiTrash } from "react-icons/fi"
 
 
+// TODO: replace with actual function
+const EditItem1 = ({ item, isOpen, onClose }) => {
+    console.log('EditItem1 Modal opened with item:', item);
+    
+    return (
+        <div>
+            {/* Edit Item1 Modal for item: {item.name} */}
+        </div>
+    );
+};
+
+const EditItem2 = ({ item, isOpen, onClose }) => {
+    console.log('EditItem2 Modal opened with item:', item);
+    
+    return (
+        <div>
+            {/* Edit Item2 Modal for item: {item.name} */}
+        </div>
+    );
+};
+
+const EditUser = ({ user, isOpen, onClose }) => {
+    console.log('EditUser Modal opened with user:', user);
+    
+    return (
+        <div>
+            {/* Edit User Modal for item: {user.name} */}
+        </div>
+    );
+};
+// TODO: replace with Delete from DeleteAlert
+const Delete = ({ type, id, isOpen, onClose }) => {
+    console.log(`Delete Modal opened for ${type} with ID:`, id);
+    
+    return (
+        <div>
+            {/* Delete {type} Modal for ID: {id} */}
+        </div>
+    );
+};
+
+
 // type: string
 // value: ItemPublic | UserPublic
 // disabled?: boolean

@@ -14,11 +14,13 @@ import {
 } from "@chakra-ui/react"
 import { useQueryClient } from "@tanstack/react-query"
 import { FiGlobe, FiHome, FiFilePlus, FiUsers, FiMenu, FiLogOut } from "react-icons/fi"
-import { Link as RouterLink } from "react-router-dom"
-import Logo from "/assets/images/rmi-logo.svg"
+import Logo from "/assets/images/rmi_logo_horitzontal_no_tagline.svg"
 import SidebarItems from "./SidebarItems"
 // import type { UserPublic } from "../../client"
-import useAuth from "../../hooks/useAuth"
+import { useAuth } from "../../hooks/useAuth"
+
+// Fake data
+import { currentUser } from "../FakeData"
 
 
 // const Sidebar = () => {
@@ -116,9 +118,9 @@ const Sidebar = () => {
     const textColor = useColorModeValue("ui.dark", "ui.light")
     const secBgColor = useColorModeValue("ui.secondary", "ui.darkSlate")
 
-    // hook to get current user's data already stored in cache
-    const queryClient = useQueryClient()
-    const currentUser = queryClient.getQueryData(["currentUser"])
+    // TODO: hook to get current user's data already stored in cache
+    // const queryClient = useQueryClient()
+    // const currentUser = queryClient.getQueryData(["currentUser"])
 
     // allow sidebar to open/close like a drawer
     const {isOpen, onOpen, onClose} = useDisclosure()

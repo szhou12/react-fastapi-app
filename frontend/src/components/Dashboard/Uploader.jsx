@@ -1,15 +1,6 @@
 import React from 'react'
 import {
-    Box, 
     Heading,
-    Button,
-    Flex,
-    Icon,
-    useDisclosure,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList,
     Container,
     SkeletonText,
     Table,
@@ -25,211 +16,20 @@ import { FaPlus } from "react-icons/fa"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { FiEdit, FiTrash } from "react-icons/fi"
 
-// TODO: replace with actual function
-const EditItem1 = ({ item, isOpen, onClose }) => {
-    console.log('EditItem1 Modal opened with item:', item);
-    
-    return (
-        <div>
-            {/* Edit Item1 Modal for item: {item.name} */}
-        </div>
-    );
-};
+import ActionsMenu from "../Common/ActionsMenu"
+import PaginationFooter from "../Common/PaginationFooter"
+import Addbar from "../Common/Addbar"
 
-const EditItem2 = ({ item, isOpen, onClose }) => {
-    console.log('EditItem2 Modal opened with item:', item);
-    
-    return (
-        <div>
-            Edit Item2 Modal for item: {item.name}
-        </div>
-    );
-};
 
-const EditUser = ({ user, isOpen, onClose }) => {
-    console.log('EditUser Modal opened with user:', user);
-    
-    return (
-        <div>
-            Edit User Modal for item: {user.name}
-        </div>
-    );
-};
+// fake data
+import { files as fakeData } from "../FakeData"
 
-const Delete = ({ type, id, isOpen, onClose }) => {
-    console.log(`Delete Modal opened for ${type} with ID:`, id);
-    
-    return (
-        <div>
-            {/* Delete {type} Modal for ID: {id} */}
-        </div>
-    );
-};
+
 
 // ActionsMenu
-const ActionsMenu = ({ type, value, disabled}) => {
-    const editModal = useDisclosure()
-    const deleteModal = useDisclosure()
-
-    const renderEditModal = () => {
-        switch(type) {
-            case "User":
-                return (
-                    <EditUser
-                        // value as UserPublic
-                        user={value}
-                        isOpen={editModal.isOpen}
-                        onClose={editModal.onClose}
-                    />
-                )
-            case "Item1":
-                return (
-                    <EditItem1
-                        // value as Item1Public
-                        item={value}
-                        isOpen={editModal.isOpen}
-                        onClose={editModal.onClose}
-                    />
-                )
-            case "Item2":
-                return (
-                    <EditItem2
-                        // value as Item2Public
-                        item={value}
-                        isOpen={editModal.isOpen}
-                        onClose={editModal.onClose}
-                    />
-                )
-            default:
-                return null
-        }
-    }
-
-    return (
-        <>
-            <Menu>
-                <MenuButton
-                    isDisabled={disabled}
-                    as={Button}
-                    rightIcon={<BsThreeDotsVertical />}
-                    variant="unstyled"
-                />
-                <MenuList>
-                    <MenuItem
-                        onClick={editModal.onOpen}
-                        icon={<FiEdit fontSize="16px"/>}
-                    >
-                        Edit {type}
-                    </MenuItem>
-                    <MenuItem
-                        onClick={deleteModal.onOpen}
-                        icon={<FiTrash fontSize="16px"/>}
-                        color="ui.danger"
-                    >
-                        Delete {type}
-                    </MenuItem>
-                </MenuList>
-                {renderEditModal()}
-                <Delete
-                    type={type}
-                    id={value.id}
-                    isOpen={deleteModal.isOpen}
-                    onClose={deleteModal.onClose}
-                />
-            </Menu>
-        </>
-    )
-}
-
 // Addbar
-const Addbar = ({ type, addModalAs }) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const AddModal = addModalAs
-
-    return (
-        <>
-            <Flex py={8} gap={4}>
-                <Button variant="primary" onClick={onOpen} gap={1} fontSize={{ base: "sm", md: "inherit" }}>
-                    <Icon as={FaPlus} /> Add {type}
-                </Button>
-                <AddModal isOpen={isOpen} onClose={onClose} />
-            </Flex>
-        </>
-    )
-
-}
-
 // Pagination Footer
-const PaginationFooter = ({ hasNextPage, hasPreviousPage, onChangePage, page }) => {
-    return (
-        <Flex justifyContent="flex-end" alignItems="center" gap={4} mt={4} directio="row">
-            <Button onClick={() => onChangePage(page - 1)} isDisabled={!hasPreviousPage || page <= 1}>Previous</Button>
-            <span>Page {page}</span>
-            <Button onClick={() => onChangePage(page + 1)} isDisabled={!hasNextPage}>Next</Button>
-        </Flex>
-    )
-}
 
-const fakeData = {
-    data: [
-        {
-            id: 1,
-            name: "中国氢储运中长期布局图景和技术展望.pdf",
-            totalPages: 26,
-            dateAdded: "2024-01-01",
-            language: "zh",
-            fileSize: "2.54",
-        },
-        {
-            id: 2,
-            name: "BCG 中国氢能产业展望.pdf",
-            totalPages: 50,
-            dateAdded: "2024-03-01",
-            language: "zh",
-            fileSize: "4.78",
-        },
-        {
-            id: 3,
-            name: "国网英大-储能行业深度报告：六类储能的发展情况及其经济性评估.pdf",
-            totalPages: 37,
-            dateAdded: "2024-02-01",
-            language: "zh",
-            fileSize: "3.14",
-        },
-        {
-            id: 4,
-            name: "BNEF-Hydrogen-Economy-Outlook-Key-Messages-30-Mar-2020.pdf",
-            totalPages: 14,
-            dateAdded: "2024-07-01",
-            language: "en",
-            fileSize: "1.01",
-        },
-        {
-            id: 5,
-            name: "《2023 势银氢能与燃料电池年度蓝皮书》.pdf",
-            totalPages: 158,
-            dateAdded: "2024-12-01",
-            language: "zh",
-            fileSize: "12.01",
-        },
-        {
-            id: 6,
-            name: "react app.pdf",
-            totalPages: 230,
-            dateAdded: "2024-12-01",
-            language: "zh",
-            fileSize: "12.01",
-        },
-        {
-            id: 7,
-            name: "test.pdf",
-            totalPages: 12,
-            dateAdded: "2025-12-01",
-            language: "en",
-            fileSize: "12.01",
-        },
-    ]
-}
 
 // Items Table
 function ItemsTable() {
