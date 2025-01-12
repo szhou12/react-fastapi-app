@@ -7,7 +7,6 @@ import Sidebar from "../Common/Sidebar"
 import UserMenu from "../Common/UserMenu"
 
 
-
 function DemoLayout() {
     const isLoading = false; // TODO: remove this
 

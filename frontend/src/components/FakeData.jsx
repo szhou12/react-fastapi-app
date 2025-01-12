@@ -128,7 +128,7 @@ export const webs = {
             url: "https://example.com",
             dateAdded: "2023-11-07",
             language: "en",
-            refreshFrequency: null,
+            refreshFrequency: 0,
         },
     ]
 }
