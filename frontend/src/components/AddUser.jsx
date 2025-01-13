@@ -1,7 +1,5 @@
 import {
     Button,
-    Checkbox,
-    Flex,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -20,6 +18,7 @@ import { useForm } from "react-hook-form"
 
 import useCostomToast from "../hooks/useCostomToast"
 import { emailPattern, usernamePattern, handleError } from "../utils"
+import { ApiError } from "./ApiError"
 
 // isOpen: boolean
 // onClose: () => void
@@ -46,11 +45,14 @@ const AddUser = ( { isOpen, onClose }) => {
         },
     })
 
+    // API request
     // TODO: finish mutation, onSubmit
+    // Unlike queries (used for fetching data), mutation is used for CRUD actions that modify data, like form submissions or API calls that change the server state.
     const mutation = useMutation({})
 
     const onSubmit = (data) => {
         mutation.mutate(data)
+        console.log(data) // TODO: remove
     }
 
     // errors object from useForm

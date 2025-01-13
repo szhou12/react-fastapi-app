@@ -18,6 +18,7 @@ import {
 import ActionsMenu from "../Common/ActionsMenu"
 import PaginationFooter from "../Common/PaginationFooter"
 import Addbar from "../Common/Addbar"
+import AddUser from "../AddUser"
 
 // fake data
 import { users as fakeData } from "../FakeData"
@@ -104,19 +105,13 @@ function ItemsTable() {
 
 
 export default function Admin() {
-    // TODO: replace with actual function
-    const AddItem = ({ isOpen, onClose }) => {
-        return (
-            <div></div>
-        )
-    }
 
     return (
         <Container maxW="full">
             <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
                 User Management
             </Heading>
-            <Addbar type={"User"} addModalAs={AddItem}/>
+            <Addbar type={"User"} addModalAs={AddUser}/>
             <ItemsTable />
         </Container>
     );
