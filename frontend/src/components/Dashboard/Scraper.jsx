@@ -19,12 +19,13 @@ import {
 import ActionsMenu from "../Common/ActionsMenu"
 import PaginationFooter from "../Common/PaginationFooter"
 import Addbar from "../Common/Addbar"
+import AddWebpage from "../AddWebpage"
 
 // fake data
 import { webs as fakeData } from "../FakeData"
 
-// Items Table
-function ItemsTable() {
+// Data Table
+function DataTable() {
     // TODO: replace with actual values
     const items = fakeData;
     const isPending = false;
@@ -74,10 +75,10 @@ function ItemsTable() {
                                                 </Link>
                                             </Tooltip>
                                         </Td>
-                                        <Td>{item.dateAdded}</Td>
+                                        <Td>{item.date_added}</Td>
                                         <Td>{item.language}</Td>
-                                        <Td>{item.refreshFrequency}</Td>
-                                        <Td><ActionsMenu type={"Item2"} value={item} /></Td>
+                                        <Td>{item.refresh_frequency}</Td>
+                                        <Td><ActionsMenu type={"Webpage"} value={item} /></Td>
                                     </Tr>
                                 )
                             )}
@@ -96,20 +97,14 @@ function ItemsTable() {
 }
 
 export default function Scraper() {
-    // TODO: replace with actual function
-    const AddItem = ({ isOpen, onClose }) => {
-        return (
-            <div></div>
-        )
-    }
 
     return (
         <Container maxW="full">
             <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
-                Web Pages Management
+                Web Page Management
             </Heading>
-            <Addbar type={"URL"} addModalAs={AddItem}/>
-            <ItemsTable />
+            <Addbar type={"URL"} addModalAs={AddWebpage}/>
+            <DataTable />
         </Container>
     );
 }

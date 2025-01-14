@@ -16,6 +16,7 @@ import {
 import ActionsMenu from "../Common/ActionsMenu"
 import PaginationFooter from "../Common/PaginationFooter"
 import Addbar from "../Common/Addbar"
+import AddFile from "../AddFile"
 
 
 // fake data
@@ -28,8 +29,8 @@ import { files as fakeData } from "../FakeData"
 // Pagination Footer
 
 
-// Items Table
-function ItemsTable() {
+// Data Table
+function DataTable() {
     // TODO: replace with actual values
     const items = fakeData;
     const isPending = false;
@@ -73,11 +74,11 @@ function ItemsTable() {
                                                 {item.name}
                                             </Tooltip>
                                         </Td>
-                                        <Td>{item.totalPages}</Td>
-                                        <Td>{item.dateAdded}</Td>
+                                        <Td>{item.total_pages}</Td>
+                                        <Td>{item.date_added}</Td>
                                         <Td>{item.language}</Td>
-                                        <Td>{item.fileSize}</Td>
-                                        <Td><ActionsMenu type={"Item1"} value={item} /></Td>
+                                        <Td>{item.file_size}</Td>
+                                        <Td><ActionsMenu type={"File"} value={item} /></Td>
                                     </Tr>
                                 )
                             )}
@@ -106,10 +107,10 @@ export default function Uploader() {
     return (
         <Container maxW="full">
             <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
-                Files Management
+                File Management
             </Heading>
-            <Addbar type={"File"} addModalAs={AddItem}/>
-            <ItemsTable />
+            <Addbar type={"File"} addModalAs={AddFile}/>
+            <DataTable />
         </Container>
     );
 }

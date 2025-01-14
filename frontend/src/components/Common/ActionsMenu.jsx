@@ -8,38 +8,11 @@ import {
 } from "@chakra-ui/react"
 import { BsThreeDotsVertical } from "react-icons/bs"
 import { FiEdit, FiTrash } from "react-icons/fi"
+import EditUser from "../EditUser"
+import EditWebpage from "../EditWebpage"
+import EditFile from "../EditFile"
 
 
-// TODO: replace with actual function
-const EditItem1 = ({ item, isOpen, onClose }) => {
-    console.log('EditItem1 Modal opened with item:', item);
-    
-    return (
-        <div>
-            {/* Edit Item1 Modal for item: {item.name} */}
-        </div>
-    );
-};
-
-const EditItem2 = ({ item, isOpen, onClose }) => {
-    console.log('EditItem2 Modal opened with item:', item);
-    
-    return (
-        <div>
-            {/* Edit Item2 Modal for item: {item.name} */}
-        </div>
-    );
-};
-
-const EditUser = ({ user, isOpen, onClose }) => {
-    console.log('EditUser Modal opened with user:', user);
-    
-    return (
-        <div>
-            {/* Edit User Modal for item: {user.name} */}
-        </div>
-    );
-};
 // TODO: replace with Delete from DeleteAlert
 const Delete = ({ type, id, isOpen, onClose }) => {
     console.log(`Delete Modal opened for ${type} with ID:`, id);
@@ -70,18 +43,18 @@ const ActionsMenu = ({ type, value, disabled}) => {
                         onClose={editModal.onClose}
                     />
                 )
-            case "Item1":
+            case "File":
                 return (
-                    <EditItem1
+                    <EditFile
                         // value as Item1Public
                         item={value}
                         isOpen={editModal.isOpen}
                         onClose={editModal.onClose}
                     />
                 )
-            case "Item2":
+            case "Webpage":
                 return (
-                    <EditItem2
+                    <EditWebpage
                         // value as Item2Public
                         item={value}
                         isOpen={editModal.isOpen}
@@ -107,14 +80,14 @@ const ActionsMenu = ({ type, value, disabled}) => {
                         onClick={editModal.onOpen}
                         icon={<FiEdit fontSize="16px"/>}
                     >
-                        Edit {type}
+                        Edit
                     </MenuItem>
                     <MenuItem
                         onClick={deleteModal.onOpen}
                         icon={<FiTrash fontSize="16px"/>}
                         color="ui.danger"
                     >
-                        Delete {type}
+                        Delete
                     </MenuItem>
                 </MenuList>
                 {renderEditModal()}

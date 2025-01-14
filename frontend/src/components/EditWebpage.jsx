@@ -27,9 +27,10 @@ import useCustomToast from "../hooks/useCustomToast"
 import { handleError } from "../utils"
 import { ApiError } from "./ApiError"
 
+// item: WebpagePublic
 // isOpen: boolean
 // onClose: () => void
-const AddWebpage = ( { isOpen, onClose }) => {
+const EditWebpage = ({ item, isOpen, onClose }) => {
     const queryClient = useQueryClient()
     const showToast = useCustomToast()
 
@@ -37,17 +38,11 @@ const AddWebpage = ( { isOpen, onClose }) => {
         register,
         handleSubmit,
         reset,
-        formState: { errors, isSubmitting },
+        formState: { errors, isSubmitting, isDirty },
     } = useForm({
         mode: "onBlur",
         criteriaMode: "all",
-        defaultValues: {
-            url: "",
-            pages: 1,
-            language: "",
-            refresh_frequency: 0,
-            auto_download: false,
-        },
+        defaultValues: item,
     })
 
     // API request
@@ -60,6 +55,11 @@ const AddWebpage = ( { isOpen, onClose }) => {
         console.log(data) // TODO: remove
     }
 
+    const onCancel = () => {
+        reset()
+        onClose()
+    }
+
     return (
         <>
             <Modal
@@ -70,57 +70,22 @@ const AddWebpage = ( { isOpen, onClose }) => {
             >
                 <ModalOverlay />
                 <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-                    <ModalHeader>Scrape Webpage</ModalHeader>
-                    <ModalCloseButton />
+                    <ModalHeader>Edit Webpage</ModalHeader>
+                    <ModalCloseButton onClick={onCancel} />
                     <ModalBody pb={6}>
-                        <FormControl isRequired isInvalid={!!errors.url}>
+                        <FormControl isInvalid={!!errors.url}>
                             <FormLabel htmlFor="url">URL</FormLabel>
                             <Input 
                                 id="url"
-                                type="url"
-                                {...register("url", {
-                                    required: "URL is required",
-                                })}
-                                placeholder="Enter URL"
+                                value={item.url}
+                                isReadOnly
+                                variant="filled"
+                                _readOnly={{
+                                    cursor: "default",
+                                    backgroundColor: "gray.100",
+                                }}
                             />
                             {errors.url && <FormErrorMessage>{errors.url.message}</FormErrorMessage>}
-                        </FormControl>
-
-                        <FormControl mt={4} isInvalid={!!errors.pages}>
-                            <FormLabel htmlFor="pages">Pages to scrape</FormLabel>
-                            <NumberInput
-                                id="pages"
-                                min={1}
-                                max={10}
-                                defaultValue={1}
-                            >
-                                <NumberInputField
-                                    isReadOnly // prevent manual entry
-                                    {...register("pages", {
-                                        min: { value: 1, message: "Minimum 1 page" },
-                                        max: { value: 10, message: "Maximum 10 pages" }
-                                    })}
-                                />
-                                <NumberInputStepper>
-                                    <NumberIncrementStepper />
-                                    <NumberDecrementStepper />
-                                </NumberInputStepper>
-                            </NumberInput>
-                            {errors.pages && <FormErrorMessage>{errors.pages.message}</FormErrorMessage>}
-                        </FormControl>
-
-                        <FormControl mt={4} isRequired isInvalid={!!errors.language}>
-                            <FormLabel htmlFor="language">Language</FormLabel>
-                            <Select 
-                                id="language"
-                                {...register("language", {
-                                    required: "Language is required",
-                                })}
-                                placeholder="Select text language"
-                            >
-                                <option value="en">English</option>
-                                <option value="zh">中文</option>
-                            </Select>
                         </FormControl>
 
                         <FormControl mt={4} isInvalid={!!errors.refresh_frequency}>
@@ -152,21 +117,13 @@ const AddWebpage = ( { isOpen, onClose }) => {
                             }
                         </FormControl>
 
-                        <Flex mt={4}>
-                            <FormControl>
-                                <Checkbox {...register("auto_download")} colorScheme="teal">
-                                    Allow auto-download?
-                                </Checkbox>
-                            </FormControl>
-                        </Flex>
-
                     </ModalBody>
 
                     <ModalFooter gap={3}>
                         <Button variant="primary" type="submit" isLoading={isSubmitting}>
-                            Scrape
+                            Save
                         </Button>
-                        <Button onClick={onClose}>Cancel</Button>
+                        <Button onClick={onCancel}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
@@ -174,4 +131,4 @@ const AddWebpage = ( { isOpen, onClose }) => {
     )
 }
 
-export default AddWebpage
+export default EditWebpage

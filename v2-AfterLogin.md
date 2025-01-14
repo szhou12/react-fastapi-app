@@ -77,3 +77,6 @@ src/
 ```
 npm install react-icons
 ```
+
+## Resources
+- [Chakra UI - v2 - file upload](https://gist.github.com/brenopolanski/5efe54b46cad0882b3ce41dc8db64608)

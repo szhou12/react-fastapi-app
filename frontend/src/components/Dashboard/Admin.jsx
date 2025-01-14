@@ -24,7 +24,7 @@ import AddUser from "../AddUser"
 import { users as fakeData } from "../FakeData"
 
 // Users Table
-function ItemsTable() {
+function UsersTable() {
     // TODO: replace with actual values
     const items = fakeData;
     const isPending = false;
@@ -71,18 +71,18 @@ function ItemsTable() {
                                         </Td>
                                         <Td>{item.email}</Td>
                                         <Td>{item.role}</Td>
-                                        <Td>{item.createdAt}</Td>
-                                        <Td>{item.lastLogin}</Td>
+                                        <Td>{item.created_at}</Td>
+                                        <Td>{item.last_login}</Td>
                                         <Td>
                                             <Flex gap={2}>
                                                 <Box 
                                                     w="2"
                                                     h="2"
                                                     borderRadius="50%"
-                                                    bg={item.isActive ? "ui.success" : "ui.danger"}
+                                                    bg={item.is_active ? "ui.success" : "ui.danger"}
                                                     alignSelf="center"
                                                 />
-                                                {item.isActive ? "Active" : "Inactive"}
+                                                {item.is_active ? "Active" : "Inactive"}
                                             </Flex>
                                         </Td>
                                         <Td><ActionsMenu type={"User"} value={item} /></Td>
@@ -112,7 +112,7 @@ export default function Admin() {
                 User Management
             </Heading>
             <Addbar type={"User"} addModalAs={AddUser}/>
-            <ItemsTable />
+            <UsersTable />
         </Container>
     );
 }

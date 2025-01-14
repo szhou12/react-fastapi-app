@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa"
 
 // type: string
 // addModalAs: React.ComponentType | React.ElementType
-const Addbar = ({ type, addModalAs}) => {
+const Addbar = ({ type, addModalAs }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const AddModal = addModalAs
 
