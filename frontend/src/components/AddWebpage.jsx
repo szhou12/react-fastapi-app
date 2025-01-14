@@ -1,5 +1,7 @@
 import {
     Button,
+    Checkbox,
+    Flex,
     FormControl,
     FormErrorMessage,
     FormLabel,
@@ -43,6 +45,8 @@ const AddWebpage = ( { isOpen, onClose }) => {
             url: "",
             pages: 1,
             language: "",
+            refresh_frequency: 0,
+            auto_download: false,
         },
     })
 
@@ -91,6 +95,7 @@ const AddWebpage = ( { isOpen, onClose }) => {
                                 defaultValue={1}
                             >
                                 <NumberInputField
+                                    isReadOnly // prevent manual entry
                                     {...register("pages", {
                                         min: { value: 1, message: "Minimum 1 page" },
                                         max: { value: 10, message: "Maximum 10 pages" }
@@ -117,6 +122,44 @@ const AddWebpage = ( { isOpen, onClose }) => {
                                 <option value="zh">中文</option>
                             </Select>
                         </FormControl>
+
+                        <FormControl mt={4} isInvalid={!!errors.refresh_frequency}>
+                            <FormLabel htmlFor="refresh_frequency">Refresh Frequency (Days)</FormLabel>
+                            <NumberInput
+                                id="refresh_frequency"
+                                min={0}
+                                defaultValue={0}
+                                precision={0}
+                                clampValueOnBlur={true}
+                            >
+                                <NumberInputField 
+                                    {...register("refresh_frequency", {
+                                        min: { value: 0, message: "Refresh rate cannot be negative" },
+                                        validate: {
+                                            isInteger: value => 
+                                                Number.isInteger(Number(value)) || 
+                                                "Refresh frequency must be a whole number"
+                                        }
+                                    })} 
+                                />
+                                <NumberInputStepper>
+                                    <NumberIncrementStepper />
+                                    <NumberDecrementStepper />
+                                </NumberInputStepper>
+                            </NumberInput>
+                            {errors.refresh_frequency && 
+                                <FormErrorMessage>{errors.refresh_frequency.message}</FormErrorMessage>
+                            }
+                        </FormControl>
+
+                        <Flex mt={4}>
+                            <FormControl>
+                                <Checkbox {...register("auto_download")} colorScheme="teal">
+                                    Allow auto-download?
+                                </Checkbox>
+                            </FormControl>
+                        </Flex>
+
                     </ModalBody>
 
                     <ModalFooter gap={3}>

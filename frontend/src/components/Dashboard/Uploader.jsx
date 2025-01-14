@@ -12,9 +12,6 @@ import {
     Tr,
     Tooltip,
 } from '@chakra-ui/react'
-import { FaPlus } from "react-icons/fa"
-import { BsThreeDotsVertical } from "react-icons/bs"
-import { FiEdit, FiTrash } from "react-icons/fi"
 
 import ActionsMenu from "../Common/ActionsMenu"
 import PaginationFooter from "../Common/PaginationFooter"
