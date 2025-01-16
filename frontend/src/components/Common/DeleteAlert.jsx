@@ -11,7 +11,7 @@ import {
 import { useForm } from "react-hook-form"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-import useCustomToast from "./hooks/useCustomToast"
+import useCustomToast from "../../hooks/useCustomToast"
 // import { ItemsService, UsersService } from "../../client"
 
 // type: string
@@ -24,39 +24,42 @@ const Delete = ({ type, id, isOpen, onClose }) => {
     const cancelRef = React.useRef(null)
     const { handleSubmit, formState: { isSubmitting } } = useForm()
 
-    // TODO: Modify
+    // TODO: work on this when backend is ready
     const deleteEntity = async (id) => {
-        if (type === "Item") {
-            await ItemsService.deleteItem(id)
-        } else if (type === "User") {
-            await UsersService.deleteUser(id)
-        } else {
-            throw new Error(`Unexpected type: ${type}`)
-        }
+        // if (type === "File") {
+        //     await ItemsService.deleteItem(id)
+        // } else if (type === "Webpage") {
+        //     await ItemsService.deleteItem(id)
+        // } else if (type === "User") {
+        //     await UsersService.deleteUser(id)
+        // } else {
+        //     throw new Error(`Unexpected type: ${type}`)
+        // }
+        console.log("deleteEntity", id)
     }
 
     const mutation = useMutation({
-        mutationFn: deleteEntity,
-        onSuccess: () => {
-            showToast(
-                "Success"
-                `The ${type.toLowerCase()} was deleted successfully.`, 
-                "success",
-            )
-            onClose()
-        },
-        onError: () => {
-            showToast(
-                "Failure"
-                `An error occurred while deleting the ${type.toLowerCase()}.`, 
-                "error",
-            )
-        },
-        onSettled: () => {
-            queryClient.invalidateQueries({
-                queryKey: [type === "Item" ? "items" : "users"]
-            })
-        },
+        // mutationFn: deleteEntity,
+        // onSuccess: () => {
+        //     showToast(
+        //         "Success"
+        //         `The ${type.toLowerCase()} was deleted successfully.`, 
+        //         "success",
+        //     )
+        //     onClose()
+        // },
+        // onError: () => {
+        //     showToast(
+        //         "Failure"
+        //         `An error occurred while deleting the ${type.toLowerCase()}.`, 
+        //         "error",
+        //     )
+        // },
+        // onSettled: () => {
+        //     queryClient.invalidateQueries({
+        //         queryKey: [type === "Item" ? "items" : "users"]
+        //     })
+        // },
     })
 
     const onSubmit = async () => {
@@ -79,6 +82,7 @@ const Delete = ({ type, id, isOpen, onClose }) => {
                         <AlertDialogBody>
                             Are you sure you want to delete this {type} (id: {id})? You cannot undo this action.
                         </AlertDialogBody>
+
                         <AlertDialogFooter gap={3}>
                             <Button ref={cancelRef} onClick={onClose} isDisabled={isSubmitting}>
                                 Cancel

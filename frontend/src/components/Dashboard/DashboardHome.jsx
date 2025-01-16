@@ -1,27 +1,21 @@
-'use client'
-
 import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Icon,
-  Stack,
-  Text,
-  useColorModeValue,
-  LinkBox,
-  LinkOverlay,
+	Box,
+	Container,
+	Flex,
+	Heading,
+	Icon,
+	Stack,
+	Text,
+	useColorModeValue,
+	LinkBox,
+	LinkOverlay,
 } from '@chakra-ui/react'
-import { ReactElement } from 'react'
 import {
-  FcConferenceCall,
-  FcFinePrint,
-  FcGlobe,
+	FcConferenceCall,
+	FcFinePrint,
+	FcGlobe,
 } from 'react-icons/fc'
 import { Link } from '@tanstack/react-router'
-
-
 
 // heading: string
 // description: string
@@ -68,40 +62,40 @@ const LinkCard = ({ heading, description, icon, href }) => {
   )
 }
 
-export default function DashboardHome() {
-  return (
-    <Box flex="1" p={8}>
-      <Stack spacing={4} maxW={'3xl'} textAlign={'left'}>
-        <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'} color={'ui.darkSlate'}>
-          Home
-        </Heading>
-        <Text color={'ui.dim'} fontSize={{ base: 'sm', sm: 'lg' }}>
-          Choose the function you want to access
-        </Text>
-      </Stack>
+function CardTable() {
+	return (
+		<>
+			<Flex py={8} gap={4} flexWrap="wrap" justify="flex-start">
+				<LinkCard
+					heading={'Scraper'}
+					icon={<Icon as={FcGlobe} w={10} h={10} />}
+					description={'Scrape data from the Internet.'}
+					href={'/dashboard/scraper'}
+				/>
+				<LinkCard
+					heading={'Uploader'}
+					icon={<Icon as={FcFinePrint} w={10} h={10} />}
+					description={'Upload file documents to the DB.'}
+					href={'/dashboard/uploader'}
+				/>
+				<LinkCard
+					heading={'Admin'}
+					icon={<Icon as={FcConferenceCall} w={10} h={10} />}
+					description={'Manage currently registered users.'}
+					href={'/dashboard/admin'}
+				/>
+			</Flex>
+		</>
+	)
+}
 
-      <Box mt={12}>
-        <Flex flexWrap="wrap" gridGap={6} justify="flex-start">
-          <LinkCard
-            heading={'Scraper'}
-            icon={<Icon as={FcGlobe} w={10} h={10} />}
-            description={'Scrape data from the Internet.'}
-            href={'/dashboard/scraper'}
-          />
-          <LinkCard
-            heading={'Uploader'}
-            icon={<Icon as={FcFinePrint} w={10} h={10} />}
-            description={'Upload file documents to the DB.'}
-            href={'/dashboard/uploader'}
-          />
-          <LinkCard
-            heading={'Admin'}
-            icon={<Icon as={FcConferenceCall} w={10} h={10} />}
-            description={'Manage currently registered users.'}
-            href={'/dashboard/admin'}
-          />
-        </Flex>
-      </Box>
-    </Box>
-  )
+export default function DashboardHome() {
+	return (
+		<Container maxW="full">
+			<Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
+				Home
+			</Heading>
+			<CardTable />
+		</Container>
+	)
 }

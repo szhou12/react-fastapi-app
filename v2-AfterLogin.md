@@ -79,4 +79,10 @@ npm install react-icons
 ```
 
 ## Resources
+- [OpenAPI Generator](https://openapi-generator.tech/#try)
 - [Chakra UI - v2 - file upload](https://gist.github.com/brenopolanski/5efe54b46cad0882b3ce41dc8db64608)
+- [How to build a GPT-3 powered chatbot in Next.js](https://dieudonneawa7.medium.com/how-to-build-a-gpt-3-powered-chatbot-in-next-js-78e0107a99fb)
+- [ruizguille/tech-trends-chatbot](https://github.com/ruizguille/tech-trends-chatbot/tree/master)
+- [dieudonneAwa/mini-chatGPT](https://github.com/dieudonneAwa/mini-chatGPT/tree/main)
+- [mxvsh/chakra-ui-simple-chat-ui.tsx](https://gist.github.com/mxvsh/5f7d1ece606ec4baf916334386e1db2a)
+- [ioanmo226/chatgpt-react-application](https://github.com/ioanmo226/chatgpt-react-application/tree/master)

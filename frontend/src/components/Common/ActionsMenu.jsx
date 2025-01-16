@@ -11,18 +11,19 @@ import { FiEdit, FiTrash } from "react-icons/fi"
 import EditUser from "../EditUser"
 import EditWebpage from "../EditWebpage"
 import EditFile from "../EditFile"
+import Delete from "../Common/DeleteAlert"
 
 
 // TODO: replace with Delete from DeleteAlert
-const Delete = ({ type, id, isOpen, onClose }) => {
-    console.log(`Delete Modal opened for ${type} with ID:`, id);
+// const Delete = ({ type, id, isOpen, onClose }) => {
+//     console.log(`Delete Modal opened for ${type} with ID:`, id);
     
-    return (
-        <div>
-            {/* Delete {type} Modal for ID: {id} */}
-        </div>
-    );
-};
+//     return (
+//         <div>
+//             {/* Delete {type} Modal for ID: {id} */}
+//         </div>
+//     );
+// };
 
 
 // type: string
