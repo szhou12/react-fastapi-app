@@ -7,9 +7,13 @@ import { Button, Flex } from "@chakra-ui/react"
 const PaginationFooter = ({ hasNextPage, hasPreviousPage, onChangePage, page }) => {
     return (
         <Flex justifyContent="flex-end" alignItems="center" gap={4} mt={4} directio="row">
-            <Button onClick={() => onChangePage(page - 1)} isDisabled={!hasPreviousPage || page <= 1}>Previous</Button>
+            <Button onClick={() => onChangePage(page - 1)} isDisabled={!hasPreviousPage || page <= 1}>
+                Previous
+            </Button>
             <span>Page {page}</span>
-            <Button onClick={() => onChangePage(page + 1)} isDisabled={!hasNextPage}>Next</Button>
+            <Button onClick={() => onChangePage(page + 1)} isDisabled={!hasNextPage}>
+                Next
+            </Button>
         </Flex>
     )
 }

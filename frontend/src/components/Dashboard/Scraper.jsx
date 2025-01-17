@@ -1,4 +1,3 @@
-import React from 'react'
 import {
     Flex,
     Box,
@@ -14,7 +13,10 @@ import {
     Tr,
     Tooltip,
     Link,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
+import { useEffect } from "react"
 
 import ActionsMenu from "../Common/ActionsMenu"
 import PaginationFooter from "../Common/PaginationFooter"
@@ -23,6 +25,8 @@ import AddWebpage from "../AddWebpage"
 
 // fake data
 import { webs as fakeData } from "../FakeData"
+
+const PER_PAGE = 5
 
 // Data Table
 function DataTable() {
