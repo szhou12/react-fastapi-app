@@ -169,11 +169,13 @@ export default function Chatbot() {
         //     <Heading>This is Chatbot page</Heading>
         // </Box>
         <Flex>
+            {/* <SidebarChat /> */}
             <SidebarChat />
             <Container maxW="full">
                 <ChatScopeUI messages={messages} isTyping={isTyping} handleSend={handleSend} />
             </Container>
             <UserMenu />
+            {/* <UserMenu /> */}
         </Flex>
     );
 }
