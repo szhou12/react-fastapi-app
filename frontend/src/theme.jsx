@@ -42,6 +42,29 @@ const theme = extendTheme({
             backgroundColor: "#E32727",
           },
         },
+        dashed: {
+          rounded: "2xl",
+          borderWidth: "2px",
+          borderStyle: "dashed",
+          borderColor: "black",
+          bg: "white",
+          px: "6",
+          py: "3",
+          fontWeight: "semibold",
+          textTransform: "uppercase",
+          color: "black",
+          transition: "all 300ms",
+          _hover: {
+            transform: 'translate(-4px, -4px)',
+            rounded: 'md',
+            shadow: '4px 4px 0px black',
+          },
+          _active: {
+            transform: 'translate(0px, 0px)',
+            rounded: '2xl',
+            shadow: 'none',
+          }
+        }
       },
     },
     Tabs: {

@@ -1,4 +1,3 @@
-'use client';
 import { useNavigate } from '@tanstack/react-router';
 import {
   Button,
@@ -50,9 +49,10 @@ export default function HomeScreen() {
               Log In
             </Button>
             <Button 
-              rounded={'full'} 
-              bg={'ui.secondary'} 
-              color={'ui.darkSlate'} 
+              variant="dashed"
+              // rounded={'full'} 
+              // bg={'ui.secondary'} 
+              // color={'ui.darkSlate'} 
               onClick={() => navigate({ to: '/register' })}
             >
               Sign Up

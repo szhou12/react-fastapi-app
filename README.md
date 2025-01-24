@@ -30,7 +30,6 @@ cd frontend
 
 npm install
 
-
 npm install @chakra-ui/react@^2.8.2   // Note: install 2.8.2 and above as 2.8.2 is the latest stable version
 npm install @emotion/react @emotion/styled framer-motion
 npm install react-router-dom
@@ -39,6 +38,7 @@ npm install @tanstack/react-query
 npm install @tanstack/react-query-devtools
 npm install @tanstack/react-router
 npm install react-hook-form
+npm install react-icons
 
 
 ## Reinstall if having issues to start the app
