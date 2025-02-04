@@ -41,9 +41,12 @@ export default function HomeScreen() {
             以RMI的海量能源数据与分析作支撑, 为您创建客制化的AI咨询服务
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-            <Button 
-              rounded={'full'} 
-              variant='primary' 
+            <Button
+              variant='dashed' 
+              borderColor={'ui.main'}
+              color={'ui.main'}
+              // rounded={'full'} 
+              // variant='primary' 
               onClick={() => navigate({ to: '/login' })}
             >
               Log In

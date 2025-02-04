@@ -46,18 +46,18 @@ const theme = extendTheme({
           rounded: "2xl",
           borderWidth: "2px",
           borderStyle: "dashed",
-          borderColor: "black",
-          bg: "white",
+          borderColor: "black", // dashed line color
+          bg: "white", // button background color
           px: "6",
           py: "3",
           fontWeight: "semibold",
           textTransform: "uppercase",
-          color: "black",
+          color: "black", // text color
           transition: "all 300ms",
           _hover: {
             transform: 'translate(-4px, -4px)',
             rounded: 'md',
-            shadow: '4px 4px 0px black',
+            shadow: '4px 4px 0px black', // shadow color
           },
           _active: {
             transform: 'translate(0px, 0px)',
