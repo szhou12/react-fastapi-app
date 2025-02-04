@@ -45,6 +45,12 @@ export default function HomeScreen() {
               variant='dashed' 
               borderColor={'ui.main'}
               color={'ui.main'}
+              _hover={{
+                transform: 'translate(-4px, -4px)',
+                rounded: 'md',
+                shadow: `4px 4px 0px var(--chakra-colors-ui-main)`, // using ui.main color for shadow
+                // borderColor: 'ui.main'  // maintain border color on hover
+              }}
               // rounded={'full'} 
               // variant='primary' 
               onClick={() => navigate({ to: '/login' })}
