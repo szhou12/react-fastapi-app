@@ -5,13 +5,12 @@ import DashboardScraper from './Dashboard/Scraper'
 import DashboardUploader from './Dashboard/Uploader'
 import DashboardAdmin from './Dashboard/Admin'
 import HomeScreen from './HomeScreen'
-import Chatbot from './Chatbot'
-// import Login from './Login'
-// import Register from './Register'
-// import LoginStaff from './LoginStaff'
+// import Chatbot from './Chatbot'
+
 import LoginStaffPage from '../features/Auth/LoginStaffPage'
 import RegisterPage from '../features/Auth/RegisterPage'
 import LoginPage from '../features/Auth/LoginPage'
+import ChatPage from '../features/Chat/ChatPage'
 
 // Create a root route
 const rootRoute = createRootRoute()
@@ -43,8 +42,8 @@ const loginStaffRoute = createRoute({
 
 const chatbotRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/chatbot',
-  component: Chatbot,
+  path: '/chat',
+  component: ChatPage,
 })
 
 // Create dashboard layout route

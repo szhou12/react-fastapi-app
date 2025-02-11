@@ -27,7 +27,7 @@ const LoginForm = () => {
         // For now, always navigate to staff dashboard regardless of input
         if (email && password) {
           login();  // Set authenticated to true
-          navigate({ to: '/chatbot' });
+          navigate({ to: '/chat' });
         }
       };
 

@@ -64,7 +64,19 @@ const theme = extendTheme({
             rounded: '2xl',
             shadow: 'none',
           }
-        }
+        },
+        text: {
+          bg: 'transparent',
+          color: 'ui.dim',
+          height: 'auto',
+          px: '2',
+          _hover: {
+            color: 'ui.dark',
+          },
+          _active: {
+            color: 'ui.dark',
+          }
+        },
       },
     },
     Tabs: {
