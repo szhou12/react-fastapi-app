@@ -68,8 +68,8 @@ const theme = extendTheme({
         text: {
           bg: 'transparent',
           color: 'ui.dim',
-          height: 'auto',
-          px: '2',
+          // height: 'auto',
+          // px: '2',
           _hover: {
             color: 'ui.dark',
           },
