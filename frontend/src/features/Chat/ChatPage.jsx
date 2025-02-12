@@ -39,11 +39,12 @@ const FAKE_PROMPT_CARDS = [
 
 const ChatPage = () => {
     const [hasTextContent, setHasTextContent] = useState(false)
-    const textareaRef = useRef(null) // init textareaRef.current to null
 
     const handleTextareaChange = (event) => {
         setHasTextContent(event.target.value.trim().length > 0)
     }
+
+    const textareaRef = useRef(null) // init textareaRef.current to null
 
     const handleMsgSubmit = (event) => {
         // prevents the following behaviors
