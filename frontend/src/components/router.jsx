@@ -11,7 +11,7 @@ import LoginStaffPage from '../features/Auth/LoginStaffPage'
 import RegisterPage from '../features/Auth/RegisterPage'
 import LoginPage from '../features/Auth/LoginPage'
 import ChatPage from '../features/Chat/ChatPage'
-import Chat from '../features/Chat/Chat'
+import ChatStartPage from '../features/Chat/ChatStartPage'
 
 // Create a root route
 const rootRoute = createRootRoute()
@@ -44,7 +44,7 @@ const loginStaffRoute = createRoute({
 const chatbotRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/chat',
-  component: Chat,
+  component: ChatPage,
 })
 
 // Create dashboard layout route

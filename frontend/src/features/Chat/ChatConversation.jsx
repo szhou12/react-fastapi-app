@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { 
     Box, 
     Button, 
@@ -49,12 +49,30 @@ const chats = [
     },
 ]
 
-const Chat = () => {
+const ChatConversation = ({ messages, onSubmitMessage }) => {
     const [hasTextContent, setHasTextContent] = useState(false)
     const handleTextareaChange = (event) => {
         setHasTextContent(event.target.value.trim().length > 0)
     }
 
+    const textareaRef = useRef(null)
+
+    const handleMsgSubmit = (event) => {
+        event.preventDefault()
+        const message = textareaRef.current?.value
+
+        if (!message?.trim()) return
+
+        onSubmitMessage(message)
+
+        event.currentTarget.reset()
+        if (textareaRef.current) {
+            textareaRef.current.style.height = 'auto'
+        }
+        setHasTextContent(false)
+    }
+
+    
     return (
         <Flex
             direction="column"
@@ -69,7 +87,7 @@ const Chat = () => {
                 paddingBottom="40"
             >
                 <ChatMessages>
-                    {chats.map((chat, index) => (
+                    {messages.map((chat, index) => (
                         <ChatMessage
                             key={index}
                             author={users[chat.type]}
@@ -92,11 +110,12 @@ const Chat = () => {
                         <ChatActionButton icon={FiRepeat}>Regenerate</ChatActionButton>
                         <ChatActionButton icon={FiDownloadCloud}>Download</ChatActionButton>
                     </HStack>
-                    <Box as="form" pos="relative" pb="1">
+                    <Box as="form" pos="relative" pb="1" onSubmit={handleMsgSubmit}>
                         <ChatTextarea
                             rows={1}
                             bg="ui.secondary"
                             onChange={handleTextareaChange}
+                            ref={textareaRef}
                         />
                         <Box
                             pos="absolute" 
@@ -123,5 +142,5 @@ const Chat = () => {
     )
 }
 
-export default Chat
+export default ChatConversation
     
