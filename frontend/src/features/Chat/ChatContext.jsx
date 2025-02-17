@@ -8,6 +8,7 @@ const ACTIONS = {
     SET_ERROR: 'SET_ERROR',
 }
 
+// State Strcuture
 // Initial state
 const initialState = {
     messages: [],
@@ -59,14 +60,32 @@ export const ChatProvider = ({ children }) => {
     const [state, dispatch] = useReducer(chatReducer, initialState)
 
     // Message handling functions
+    // dispatch(action) sends action to chatReducer
+    // state is automatically managed by useReducer, so no explicit state passing
     const handleFirstMessage = async (message) => {
         try {
+            // Execute sequentially
+            // Step 1
             dispatch({ type: ACTIONS.SET_LOADING, payload: true })
-            // TODO: API call could go here
+
+            // Step 2 user's first message
             dispatch({ type: ACTIONS.START_CHAT, payload: message })
+
+            // TODO: API call to backend
+            // Step 3 AI response
+            const aiResponse = "Hello! I'm your AI assistant."
+            dispatch({
+                type: ACTIONS.ADD_MESSAGE,
+                payload: {
+                    type: 'assistant',
+                    message: aiResponse
+                }
+            })
+
         } catch (error) {
             dispatch({ type: ACTIONS.SET_ERROR, payload: error.message })
         } finally {
+            // Step 4
             dispatch({ type: ACTIONS.SET_LOADING, payload: false })
         }
     }
@@ -74,11 +93,25 @@ export const ChatProvider = ({ children }) => {
     const handleNewMessage = async (message) => {
         try {
             dispatch({ type: ACTIONS.SET_LOADING, payload: true })
-            // API call could go here
+            
+            // user's first message
             dispatch({
                 type: ACTIONS.ADD_MESSAGE,
                 payload: { type: 'user', message }
             })
+
+            // TODO: API call to backend
+            // AI response
+            const aiResponse = "This is AI response."
+            dispatch({
+                type: ACTIONS.ADD_MESSAGE,
+                payload: {
+                    type: 'assistant',
+                    message: aiResponse
+                }
+            })
+
+
         } catch (error) {
             dispatch({ type: ACTIONS.SET_ERROR, payload: error.message })
         } finally {
