@@ -16,8 +16,18 @@ export const ChatMessage = ({ author, messages = [] }) => {
                 <Text fontWeight="medium">{author.name}</Text>
                 <Stack spacing="2">
                     {messages.map((message, index) => (
-                        <Box key={index} lineHeight="tall">
-                            {message}
+                        <Box 
+                            key={index}
+                            lineHeight="tall"
+                            maxW="100%"
+                        >
+                            <Text
+                                whiteSpace="pre-wrap"     // Preserve line breaks and wrap text
+                                wordBreak="break-word"    // Break long words if necessary
+                                overflowWrap="break-word" // Ensure long words don't overflow
+                            >
+                                {message}
+                            </Text>
                         </Box>
                     ))}
                 </Stack>

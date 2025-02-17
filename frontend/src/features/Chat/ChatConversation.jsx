@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { 
     Box, 
     Button, 
@@ -50,6 +50,7 @@ const chats = [
 ]
 
 const ChatConversation = ({ messages, onSubmitMessage }) => {
+    // Detect if the textarea has any text content
     const [hasTextContent, setHasTextContent] = useState(false)
     const handleTextareaChange = (event) => {
         setHasTextContent(event.target.value.trim().length > 0)
@@ -72,6 +73,21 @@ const ChatConversation = ({ messages, onSubmitMessage }) => {
         setHasTextContent(false)
     }
 
+    const messagesEndRef = useRef(null)
+
+    useEffect(() => {
+        // Add a small delay to ensure proper scrolling after layout
+        const timeoutId = setTimeout(() => {
+            messagesEndRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'end',    // Ensures alignment to the bottom
+                inline: 'nearest'
+            })
+        }, 100)
+
+        return () => clearTimeout(timeoutId)
+    }, [messages]) // effect triggers when `messages` changes
+
     
     return (
         <Flex
@@ -82,9 +98,9 @@ const ChatConversation = ({ messages, onSubmitMessage }) => {
             overflow="hidden"
         >
             <Box
-                overflowY="auto"
+                flex="1"
+                overflowY="auto" // Enable vertical scrolling
                 paddingTop="20"
-                paddingBottom="40"
             >
                 <ChatMessages>
                     {messages.map((chat, index) => (
@@ -94,6 +110,13 @@ const ChatConversation = ({ messages, onSubmitMessage }) => {
                             messages={chat.messages}
                         />
                     ))}
+                    {/* Scroll target */}
+                    <Box 
+                        ref={messagesEndRef} 
+                        paddingBottom="40" // make padding part of the target to ensure both the target AND its padding are visible
+                        height="1px"
+                        width="100%"
+                    />
                 </ChatMessages>
             </Box>
 
