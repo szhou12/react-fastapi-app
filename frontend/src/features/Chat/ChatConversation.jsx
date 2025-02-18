@@ -14,6 +14,7 @@ import { ChatActionButton } from '../../components/Chatbot/ChatActionButton'
 import { ChatMessages } from '../../components/Chatbot/ChatMessages'
 import { ChatMessage } from '../../components/Chatbot/ChatMessage'
 
+
 const users = {
     user: {
         name: 'MaryJane',
@@ -26,8 +27,8 @@ const users = {
 }
 
 
-const ChatConversation = ({ messages, onSubmitMessage }) => {
-    // Detect if the textarea has any text content
+const ChatConversation = ({ messages, onSubmitMessage, isLoading }) => {
+    // Effect: Detect if the textarea has any text content
     const [hasTextContent, setHasTextContent] = useState(false)
     const handleTextareaChange = (event) => {
         setHasTextContent(event.target.value.trim().length > 0)
@@ -50,10 +51,11 @@ const ChatConversation = ({ messages, onSubmitMessage }) => {
         setHasTextContent(false)
     }
 
+    // Effect: Scroll to the bottom of the chat when messages change
     const messagesEndRef = useRef(null)
 
     useEffect(() => {
-        // Add a small delay to ensure proper scrolling after layout
+        // if messsages changed, wait for 0.1s before scrolling to the bottom
         const timeoutId = setTimeout(() => {
             messagesEndRef.current?.scrollIntoView({
                 behavior: 'smooth',
@@ -84,9 +86,17 @@ const ChatConversation = ({ messages, onSubmitMessage }) => {
                         <ChatMessage
                             key={index}
                             author={users[chat.type]}
-                            messages={chat.messages}
+                            messages={chat.messages} 
                         />
                     ))}
+                    {isLoading && (
+                        <ChatMessage
+                            key="loading-message"
+                            author={users.assistant}
+                            messages={[""]}  // Placeholder text
+                            isLoading={true}   // Show loading spinner
+                        />
+                    )}
                     {/* Scroll target */}
                     <Box 
                         ref={messagesEndRef} 
@@ -116,6 +126,7 @@ const ChatConversation = ({ messages, onSubmitMessage }) => {
                             bg="ui.secondary"
                             onChange={handleTextareaChange}
                             ref={textareaRef}
+                            disabled={isLoading}
                         />
                         <Box
                             pos="absolute" 
@@ -128,7 +139,7 @@ const ChatConversation = ({ messages, onSubmitMessage }) => {
                                 type="submit"
                                 variant={hasTextContent ? "primary" : "text"}
                                 rounded="md"
-                                disabled={!hasTextContent}
+                                disabled={!hasTextContent || isLoading}
                             >
                                 <HiArrowUp />
                             </Button>

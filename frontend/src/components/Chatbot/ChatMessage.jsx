@@ -6,7 +6,9 @@ import {
     Text 
 } from "@chakra-ui/react"
 
-export const ChatMessage = ({ author, messages = [] }) => {
+import LoadingSpinner from '../../components/Common/LoadingSpinner'
+
+export const ChatMessage = ({ author, messages = [], isLoading = false }) => {
     return (
         <HStack align="flex-start" gap="5">
             <Box pt="1">
@@ -14,20 +16,25 @@ export const ChatMessage = ({ author, messages = [] }) => {
             </Box>
             <Stack spacing="1">
                 <Text fontWeight="medium">{author.name}</Text>
-                <Stack spacing="2">
+                <Stack spacing="2" position="relative">
                     {messages.map((message, index) => (
                         <Box 
                             key={index}
                             lineHeight="tall"
                             maxW="100%"
+                            position="relative"
                         >
-                            <Text
-                                whiteSpace="pre-wrap"     // Preserve line breaks and wrap text
-                                wordBreak="break-word"    // Break long words if necessary
-                                overflowWrap="break-word" // Ensure long words don't overflow
-                            >
-                                {message}
-                            </Text>
+                            {isLoading ? (
+                                <LoadingSpinner/>
+                            ) : (
+                                <Text
+                                    whiteSpace="pre-wrap"     // Preserve line breaks and wrap text
+                                    wordBreak="break-word"    // Break long words if necessary
+                                    overflowWrap="break-word" // Ensure long words don't overflow
+                                >
+                                    {message}
+                                </Text>
+                            )}
                         </Box>
                     ))}
                 </Stack>

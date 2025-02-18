@@ -22,13 +22,16 @@ const ChatContent = () => {
 
     return (
         <ErrorBoundary>
-            {isLoading && <LoadingSpinner />}
+            {/* {isLoading && <LoadingSpinner />} */}
             {!hasStarted ? (
-                <ChatStartPage onSubmitMessage={handleFirstMessage} />
+                <ChatStartPage 
+                    onSubmitMessage={handleFirstMessage} 
+                />
             ) : (
                 <ChatConversation
                     messages={messages}
                     onSubmitMessage={handleNewMessage}
+                    isLoading={isLoading}
                 />
             )}
         </ErrorBoundary>

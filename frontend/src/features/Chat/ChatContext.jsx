@@ -65,15 +65,17 @@ export const ChatProvider = ({ children }) => {
     const handleFirstMessage = async (message) => {
         try {
             // Execute sequentially
-            // Step 1
+            // Step 1 start loading
             dispatch({ type: ACTIONS.SET_LOADING, payload: true })
 
-            // Step 2 user's first message
+            // Step 2 add user's first message
             dispatch({ type: ACTIONS.START_CHAT, payload: message })
 
             // TODO: API call to backend
+            // Simulate API call with setTimeout
+            await new Promise(resolve => setTimeout(resolve, 5000))
             // Step 3 AI response
-            const aiResponse = "Hello! I'm your AI assistant."
+            const aiResponse = "Hello! I'm your AI assistant. I'll help you with: " + message
             dispatch({
                 type: ACTIONS.ADD_MESSAGE,
                 payload: {
@@ -85,7 +87,7 @@ export const ChatProvider = ({ children }) => {
         } catch (error) {
             dispatch({ type: ACTIONS.SET_ERROR, payload: error.message })
         } finally {
-            // Step 4
+            // Step 4 end loading
             dispatch({ type: ACTIONS.SET_LOADING, payload: false })
         }
     }
@@ -94,15 +96,17 @@ export const ChatProvider = ({ children }) => {
         try {
             dispatch({ type: ACTIONS.SET_LOADING, payload: true })
             
-            // user's first message
+            // user's incoming message
             dispatch({
                 type: ACTIONS.ADD_MESSAGE,
                 payload: { type: 'user', message }
             })
 
             // TODO: API call to backend
+            // Simulate API call with setTimeout
+            await new Promise(resolve => setTimeout(resolve, 5000))
             // AI response
-            const aiResponse = "This is AI response."
+            const aiResponse = "Thank you for your message. You said: " + message
             dispatch({
                 type: ACTIONS.ADD_MESSAGE,
                 payload: {
@@ -115,6 +119,7 @@ export const ChatProvider = ({ children }) => {
         } catch (error) {
             dispatch({ type: ACTIONS.SET_ERROR, payload: error.message })
         } finally {
+            // end loading
             dispatch({ type: ACTIONS.SET_LOADING, payload: false })
         }
     }
