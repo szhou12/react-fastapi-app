@@ -1,21 +1,18 @@
 import { useState, useRef } from 'react'
-import { useNavigate, useSearch } from '@tanstack/react-router'
 import { 
     Box, 
     Button, 
     Flex, 
     SimpleGrid, 
-    Stack,
-    useToast,
+    Stack
 } from '@chakra-ui/react'
 import { BsPalette2 } from 'react-icons/bs'
 import { FaReact, FaRecycle } from 'react-icons/fa'
 import { HiArrowUp, HiSparkles } from 'react-icons/hi'
 
-import { useChat } from './ChatContext'
-import { ChatTextarea } from '../../components/Chatbot/ChatTextarea'
-import { EmptyStatePrompt } from '../../components/Chatbot/EmptyStatePrompt'
-import { PromptSuggestButton } from '../../components/Chatbot/PromptSuggestButton'
+import { ChatTextarea } from "../../components/Chatbot/ChatTextarea"
+import { EmptyStatePrompt } from "../../components/Chatbot/EmptyStatePrompt"
+import { PromptSuggestButton } from "../../components/Chatbot/PromptSuggestButton"
 
 const FAKE_PROMPT_CARDS = [
     {
@@ -40,22 +37,16 @@ const FAKE_PROMPT_CARDS = [
     }
 ]
 
-const ChatStartPage = () => {
-    const navigate = useNavigate()
-    const { sso } = useSearch() // Get SSO from URL if present
-
-    // TODO: add toast to show error message
-
-    const { handleFirstMessage, isLoading } = useChat()
-    
+const ChatStartPage0 = ({ onSubmitMessage }) => {
     const [hasTextContent, setHasTextContent] = useState(false)
-    const textareaRef = useRef(null) // init textareaRef.current to null
 
     const handleTextareaChange = (event) => {
         setHasTextContent(event.target.value.trim().length > 0)
     }
 
-    const handleMsgSubmit = async (event) => {
+    const textareaRef = useRef(null) // init textareaRef.current to null
+
+    const handleMsgSubmit = (event) => {
         // prevents the following behaviors
         // → Page would reload
         // → URL might become something like "/?message=Hello"
@@ -68,20 +59,8 @@ const ChatStartPage = () => {
         if (!message?.trim()) return
 
         // handle message submission
-        try {
-            // Get conversation ID from context
-            const conversationId = await handleFirstMessage(message)
-
-            // Navigate to the conversation
-            navigate({ 
-                to: '/chat/c/$conversationId',
-                params: { conversationId }
-            })
-
-        } catch (error) {
-            // TODO: may use toast to show error message
-            console.error('Error submitting message:', error)
-        }
+        // console.log("Sending:", message)
+        onSubmitMessage(message)
 
         // Clear the entire form
         // event.currentTarget refers to the <form> element
@@ -147,7 +126,6 @@ const ChatStartPage = () => {
                             bg="ui.secondary"
                             onChange={handleTextareaChange}
                             ref={textareaRef} // textareaRef.current now points to <Textarea>
-                            disabled={isLoading}
                         />
                         <Box
                             pos="absolute" 
@@ -160,12 +138,10 @@ const ChatStartPage = () => {
                                 type="submit"
                                 variant={hasTextContent ? "primary" : "text"}
                                 rounded="md"
-                                disabled={!hasTextContent || isLoading}
-                                isLoading={isLoading}
+                                disabled={!hasTextContent}
                             >
                                 <HiArrowUp />
                             </Button>
-
                         </Box>
                     </Box>
                 </Stack>
@@ -174,4 +150,5 @@ const ChatStartPage = () => {
     )
 }
 
-export default ChatStartPage
+export default ChatStartPage0
+

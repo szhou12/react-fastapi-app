@@ -1,141 +1,186 @@
 import { createContext, useContext, useReducer } from 'react'
+import { v4 as uuidv4 } from 'uuid'  // For generating conversation IDs
 
-// Define action types
+// Create the context
+const ChatContext = createContext()
+
+// action types
 const ACTIONS = {
     START_CHAT: 'START_CHAT',
     ADD_MESSAGE: 'ADD_MESSAGE',
     SET_LOADING: 'SET_LOADING',
     SET_ERROR: 'SET_ERROR',
+    SET_CURRENT_CONVERSATION: 'SET_CURRENT_CONVERSATION',
 }
 
-// State Strcuture
-// Initial state
+// initial state to handle multiple conversations
 const initialState = {
-    messages: [],
-    hasStarted: false,
+    conversations: {},  // Store conversations by ID
+    currentConversationId: null,
     isLoading: false,
     error: null,
 }
 
-// Reducer for state management
 const chatReducer = (state, action) => {
     switch (action.type) {
-        case ACTIONS.START_CHAT:
+        case ACTIONS.START_CHAT: {
+            const { message, conversationId } = action.payload
             return {
                 ...state,
-                hasStarted: true,
-                messages: [{
-                    type: 'user',
-                    messages: [action.payload]
-                }]
+                conversations: {
+                    ...state.conversations,
+                    [conversationId]: {
+                        id: conversationId,
+                        messages: [{
+                            type: 'user',
+                            content: message,
+                            timestamp: new Date().toISOString(),
+                        }]
+                    }
+                },
+                currentConversationId: conversationId,
             }
-        case ACTIONS.ADD_MESSAGE:
+        }
+
+        case ACTIONS.ADD_MESSAGE: {
+            const { conversationId, type, content } = action.payload
+            const conversation = state.conversations[conversationId]
+
+            if (!conversation) return state
+
             return {
                 ...state,
-                messages: [...state.messages, {
-                    type: action.payload.type,
-                    messages: [action.payload.message]
-                }]
+                conversations: {
+                    ...state.conversations,
+                    [conversationId]: {
+                        ...conversation,
+                        messages: [...conversation.messages, {
+                            type,
+                            content,
+                            timestamp: new Date().toISOString(),
+                        }],
+                    }
+                }
             }
+        }
+
         case ACTIONS.SET_LOADING:
             return {
                 ...state,
-                isLoading: action.payload
+                isLoading: action.payload,
             }
+
         case ACTIONS.SET_ERROR:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload, 
             }
+
+        case ACTIONS.SET_CURRENT_CONVERSATION:
+            return {
+                ...state,
+                currentConversationId: action.payload,
+            }
+        
         default:
             return state
     }
 }
 
-// Create the context
-const ChatContext = createContext()
-
 // Context Provider
 export const ChatProvider = ({ children }) => {
     const [state, dispatch] = useReducer(chatReducer, initialState)
 
-    // Message handling functions
-    // dispatch(action) sends action to chatReducer
-    // state is automatically managed by useReducer, so no explicit state passing
     const handleFirstMessage = async (message) => {
         try {
-            // Execute sequentially
-            // Step 1 start loading
             dispatch({ type: ACTIONS.SET_LOADING, payload: true })
 
-            // Step 2 add user's first message
-            dispatch({ type: ACTIONS.START_CHAT, payload: message })
+            // Generate new conversation ID
+            // shoudl we generate at frontend?
+            const conversationId = uuidv4()
 
-            // TODO: API call to backend
-            // Simulate API call with setTimeout
-            await new Promise(resolve => setTimeout(resolve, 5000))
-            // Step 3 AI response
-            const aiResponse = "Hello! I'm your AI assistant. I'll help you with: " + message
+            // Start new conversation
+            dispatch({ 
+                type: ACTIONS.START_CHAT, 
+                payload: { message, conversationId } 
+            })
+
+            // Simulate API call to backend
+            await new Promise(resolve => setTimeout(resolve, 2000))
+
+            // Add AI response
             dispatch({
                 type: ACTIONS.ADD_MESSAGE,
                 payload: {
+                    conversationId,
                     type: 'assistant',
-                    message: aiResponse
+                    content: `Hello! I'm your AI assistant. I'll help you with: ${message}`
                 }
             })
 
+            return conversationId  // Return ID for navigation
+
         } catch (error) {
             dispatch({ type: ACTIONS.SET_ERROR, payload: error.message })
+            throw error  // Re-throw for error handling in ChatStartPage
         } finally {
-            // Step 4 end loading
             dispatch({ type: ACTIONS.SET_LOADING, payload: false })
         }
     }
 
-    const handleNewMessage = async (message) => {
+    const handleNewMessage = async (message, conversationId) => {
         try {
             dispatch({ type: ACTIONS.SET_LOADING, payload: true })
-            
-            // user's incoming message
-            dispatch({
-                type: ACTIONS.ADD_MESSAGE,
-                payload: { type: 'user', message }
-            })
 
-            // TODO: API call to backend
-            // Simulate API call with setTimeout
-            await new Promise(resolve => setTimeout(resolve, 5000))
-            // AI response
-            const aiResponse = "Thank you for your message. You said: " + message
+            // Add user message
             dispatch({
                 type: ACTIONS.ADD_MESSAGE,
-                payload: {
-                    type: 'assistant',
-                    message: aiResponse
+                payload: { 
+                    conversationId,
+                    type: 'user',
+                    content: message
                 }
             })
 
+            // Simulate API call to backend
+            await new Promise(resolve => setTimeout(resolve, 2000))
 
+            // Add AI response
+            dispatch({
+                type: ACTIONS.ADD_MESSAGE,
+                payload: {
+                    conversationId,
+                    type: 'assistant',
+                    content: `Thank you for your message. You said: ${message}`
+                }
+            })
         } catch (error) {
             dispatch({ type: ACTIONS.SET_ERROR, payload: error.message })
+            throw error  // Re-throw for error handling in ChatConversation
         } finally {
-            // end loading
             dispatch({ type: ACTIONS.SET_LOADING, payload: false })
         }
+    }
+
+    // Helper to get current conversation
+    const getCurrentConversation = () => {
+        return state.currentConversationId 
+            ? state.conversations[state.currentConversationId]
+            : null
     }
 
     return (
         <ChatContext.Provider value={{
             ...state,
+            currentConversation: getCurrentConversation(),
             handleFirstMessage,
-            handleNewMessage
+            handleNewMessage,
         }}>
             {children}
         </ChatContext.Provider>
     )
 }
 
-// Custom hook for using chat context
 export const useChat = () => {
     const context = useContext(ChatContext)
     if (!context) {

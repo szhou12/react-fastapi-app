@@ -39,6 +39,7 @@ npm install @tanstack/react-query-devtools
 npm install @tanstack/react-router
 npm install react-hook-form
 npm install react-icons
+npm install uuid
 
 
 ## Reinstall if having issues to start the app

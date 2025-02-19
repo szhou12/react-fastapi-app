@@ -78,6 +78,60 @@ src/
 npm install react-icons
 ```
 
+## Chat Interface
+### Workflow
+1. Initial Entry (New Chat):
+```
+URL: /chat?sso=
+Component: ChatStartPage
+State: Empty chat, ready for first message
+Actions:
+- User enters first message
+- System generates new conversation ID (Session ID)
+- Redirects to conversation URL
+```
+2. Active Conversation:
+```
+URL: /chat/c/[conversation-id]
+Component: ChatConversation
+State: Existing chat with message history
+Actions:
+- Load conversation history for this ID
+- Show messages
+- Allow continued conversation
+```
+3. Route Structure:
+```
+/chat (ChatPage - Provider)
+  ├── /?sso= (ChatStartPage)
+  └── /c/[conversation-id] (ChatConversation)
+```
+4. Navigation Flow:
+```
+Start
+    ↓
+/chat?sso=
+    ↓ [User sends first message]
+Generate conversation ID
+    ↓
+Redirect to /chat/c/[new-id]
+    ↓
+Load/Show conversation
+```
+5. State Management:
+```
+ChatContext
+├── conversations
+│   └── { id, messages[], status }
+├── currentConversationId
+└── loading/error states
+```
+6. TODO list:
+    1. Setting up the routes at `router.jsx`
+    2. Modifying the `ChatContext`
+    3. Updating the `ChatStartPage`
+    4. Updating the ChatConversation
+
 ## Resources
 - [OpenAPI Generator](https://openapi-generator.tech/#try)
 - [Chakra UI - v2 - file upload](https://gist.github.com/brenopolanski/5efe54b46cad0882b3ce41dc8db64608)

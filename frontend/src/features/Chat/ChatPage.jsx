@@ -1,4 +1,4 @@
-import { ChatProvider } from './ChatContext'
+import { ChatProvider } from './ChatContext0' // TODO: change to ChatContext
 import ChatContent from './ChatContent'
 
 const ChatPage = () => {

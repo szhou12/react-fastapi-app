@@ -1,53 +1,33 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams, useNavigate } from '@tanstack/react-router'
 import { 
     Box, 
     Button, 
     Flex, 
     HStack, 
-    Stack,
-    useToast
+    Stack 
 } from '@chakra-ui/react'
 import { FiDownloadCloud, FiRepeat } from 'react-icons/fi'
 import { HiArrowUp } from 'react-icons/hi'
 
-import { useChat } from './ChatContext'
-import { ChatTextarea } from '../../components/Chatbot/ChatTextarea'
+import { ChatTextarea } from "../../components/Chatbot/ChatTextarea"
 import { ChatActionButton } from '../../components/Chatbot/ChatActionButton'
 import { ChatMessages } from '../../components/Chatbot/ChatMessages'
 import { ChatMessage } from '../../components/Chatbot/ChatMessage'
 
+
 const users = {
     user: {
         name: 'MaryJane',
-        image: 'https://api.dicebear.com/9.x/thumbs/svg?seed=MaryJane'
+        image: "https://api.dicebear.com/9.x/thumbs/svg?seed=MaryJane"
     },
     assistant: {
         name: 'AI',
-        image: 'https://api.dicebear.com/9.x/thumbs/svg?seed=AI'
+        image: "https://api.dicebear.com/9.x/thumbs/svg?seed=AI"
     },
 }
 
-const ChatConversation = () => {
-    const { conversationId } = useParams()
-    const navigate = useNavigate()
 
-    // TODO: add toast to show error message
-
-    const { 
-        conversations,
-        handleNewMessage, 
-        isLoading 
-    } = useChat()
-
-    // Get current conversation
-    const conversation = conversations[conversationId]
-    if (!conversation) {
-        // If conversation not found, redirect to start
-        navigate({ to: '/chat' })
-        return null
-    }
-
+const ChatConversation0 = ({ messages, onSubmitMessage, isLoading }) => {
     // Effect: Detect if the textarea has any text content
     const [hasTextContent, setHasTextContent] = useState(false)
     const handleTextareaChange = (event) => {
@@ -56,18 +36,13 @@ const ChatConversation = () => {
 
     const textareaRef = useRef(null)
 
-    const handleMsgSubmit = async (event) => {
+    const handleMsgSubmit = (event) => {
         event.preventDefault()
         const message = textareaRef.current?.value
 
         if (!message?.trim()) return
 
-        try {
-            await handleNewMessage(message, conversationId)
-        } catch (error) {
-            // TODO: may use toast to show error message
-            console.error('Error submitting message:', error)
-        }
+        onSubmitMessage(message)
 
         event.currentTarget.reset()
         if (textareaRef.current) {
@@ -90,8 +65,9 @@ const ChatConversation = () => {
         }, 100)
 
         return () => clearTimeout(timeoutId)
-    }, [conversation.messages]) // effect triggers when messages changes
+    }, [messages]) // effect triggers when `messages` changes
 
+    
     return (
         <Flex
             direction="column"
@@ -106,11 +82,11 @@ const ChatConversation = () => {
                 paddingTop="20"
             >
                 <ChatMessages>
-                    {conversation.messages.map((message, index) => (
+                    {messages.map((chat, index) => (
                         <ChatMessage
                             key={index}
-                            author={users[message.type]}
-                            messages={message.content}
+                            author={users[chat.type]}
+                            messages={chat.messages} 
                         />
                     ))}
                     {isLoading && (
@@ -164,19 +140,18 @@ const ChatConversation = () => {
                                 variant={hasTextContent ? "primary" : "text"}
                                 rounded="md"
                                 disabled={!hasTextContent || isLoading}
-                                isLoading={isLoading}
                             >
                                 <HiArrowUp />
                             </Button>
                         </Box>
                     </Box>
+
                 </Stack>
             </Box>
 
         </Flex>
     )
-
-
 }
 
-export default ChatConversation
+export default ChatConversation0
+    

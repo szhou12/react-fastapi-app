@@ -12,6 +12,7 @@ import RegisterPage from '../features/Auth/RegisterPage'
 import LoginPage from '../features/Auth/LoginPage'
 import ChatPage from '../features/Chat/ChatPage'
 import ChatStartPage from '../features/Chat/ChatStartPage'
+import ChatConversation from '../features/Chat/ChatConversation'
 
 // Create a root route
 const rootRoute = createRootRoute()
@@ -23,6 +24,9 @@ const indexRoute = createRoute({
   component: HomeScreen,
 })
 
+/*
+ Login and Register routes
+*/
 const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/login',
@@ -41,12 +45,9 @@ const loginStaffRoute = createRoute({
   component: LoginStaffPage,
 })
 
-const chatbotRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '/chat',
-  component: ChatPage,
-})
-
+/*
+ Staff Dashboard routes
+*/
 // Create dashboard layout route
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -79,19 +80,64 @@ const dashboardAdminRoute = createRoute({
   component: DashboardAdmin,
 })
 
-// Create the router
+/*
+ Client Chat routes
+*/
+const chatbotRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/chat',
+  component: ChatPage,
+})
+
+// Define route paths as constants for maintainability
+const CHAT_ROUTES = {
+  root: "/chat",
+  start: "/",
+  conversation: "/c/$conversationId",
+}
+
+// Main chat route with provider
+const chatRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: CHAT_ROUTES.root,
+  component: ChatPage,
+})
+
+// Chat start route with SSO query parameter
+const chatStartRoute = createRoute({
+  getParentRoute: () => chatRoute,
+  path: CHAT_ROUTES.start, // matches /chat
+  component: ChatStartPage,
+  validateSearch: (search) => ({
+    sso: typeof search.sso === "string" ? search.sso : "",  // Make sso parameter optional
+  }),
+})
+
+// Chat conversation route with Session ID parameter
+const chatConversationRoute = createRoute({
+  getParentRoute: () => chatRoute,
+  path: CHAT_ROUTES.conversation,  // matches /chat/c/[id]
+  component: ChatConversation,
+})
+
+
+// Finally, create the router for all routes
 const routeTree = rootRoute.addChildren([
   indexRoute,
   loginRoute,
   registerRoute,
   loginStaffRoute,
-  chatbotRoute,
   dashboardRoute.addChildren([
     dashboardHomeRoute,
     dashboardScraperRoute,
     dashboardUploaderRoute,
     dashboardAdminRoute,
-  ])
+  ]),
+  // chatRoute.addChildren([
+  //   chatStartRoute,
+  //   chatConversationRoute,
+  // ]),
+  chatbotRoute
 ])
 
 export const router = createRouter({ routeTree })

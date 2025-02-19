@@ -18,7 +18,7 @@ function DemoLayout() {
                     <Spinner size="xl" color="ui.primary" />
                 </Flex>
             ) : (
-                <Outlet />
+                <Outlet /> // This is where child routes are rendered
             )}
             <UserMenu />
             

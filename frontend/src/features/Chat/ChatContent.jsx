@@ -1,9 +1,9 @@
-import { useChat } from './ChatContext'
+import { useChat } from './ChatContext0'
 
-import ChatStartPage from './ChatStartPage'
-import ChatConversation from './ChatConversation'
+import ChatStartPage0 from './ChatStartPage0'
+import ChatConversation0 from './ChatConversation0'
 import ErrorBoundary from '../../components/Common/ErrorBoundary'
-import LoadingSpinner from '../../components/Common/LoadingSpinner'
+
 
 
 const ChatContent = () => {
@@ -24,11 +24,11 @@ const ChatContent = () => {
         <ErrorBoundary>
             {/* {isLoading && <LoadingSpinner />} */}
             {!hasStarted ? (
-                <ChatStartPage 
+                <ChatStartPage0 
                     onSubmitMessage={handleFirstMessage} 
                 />
             ) : (
-                <ChatConversation
+                <ChatConversation0
                     messages={messages}
                     onSubmitMessage={handleNewMessage}
                     isLoading={isLoading}
