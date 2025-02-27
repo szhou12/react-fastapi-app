@@ -101,7 +101,11 @@ git diff v1-code..v2-code
 ```
 
 ### Git Merge Branches
-Keep `main` up-to-date with the latest version (i.e. the latest working branch). Conduct step 1, 2, 3, 4 if and only if you want to bring some ahead commits in `main` to `lastest-working-branch`. If `main` is totally behind `lastest-working-branch`, skip step 1, 2, 3, 4.
+Keep `main` up-to-date with the latest version (i.e. the latest working branch). 
+
+Conduct Step 1, 2, 3, 4 if and only if you want to bring some ahead commits from `main` to `lastest-working-branch`. 
+
+If `main` is totally behind `lastest-working-branch`, SKIP Step 1, 2, 3, 4!!!
 
 1. Switch to the latest working branch
 ```linux
