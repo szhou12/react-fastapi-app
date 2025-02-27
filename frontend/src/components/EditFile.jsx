@@ -21,7 +21,7 @@ const EditFile = ({ item, isOpen, onClose }) => {
             >
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Edit User</ModalHeader>
+                    <ModalHeader>Edit File</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <Flex 

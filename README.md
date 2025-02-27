@@ -108,10 +108,10 @@ Keep `main` up-to-date with the latest version (i.e. the latest working branch).
 git checkout lastest-working-branch
 ```
 2. Bring ahead commits in `main` to `lastest-working-branch`
-```linux
-git merge main
-```
-This may open up a text editor, leave necessary messages and type ESC and then `:wq` to save and exit.
+    ```linux
+    git merge main
+    ```
+    This may open up a text editor, leave necessary messages and type ESC and then `:wq` to save and exit.
 3. Resove Merge Conflicts if Arise
     1. Open the conflicted files in your editor.
     2. Look for conflict markers (e.g., <<<<<<<, =======, >>>>>>>).
