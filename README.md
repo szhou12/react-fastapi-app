@@ -11,6 +11,7 @@
 
 ## Milestones
 1. [Stage 1 - Static Home, Login, Register Pages](https://github.com/szhou12/react-fastapi-app/blob/main/v1-HomeScreen.md)
+2. [Stage 2 - Home, Login, Register, Client Chat Interface, Staff Console in Chakra UI v2](https://github.com/szhou12/react-fastapi-app/blob/main/v2-AfterLogin.md)
 
 
 ## SetUp
