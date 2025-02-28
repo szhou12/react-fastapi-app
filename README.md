@@ -52,6 +52,11 @@ sudo npm cache clean --force
 
 # Reinstall all dependencies
 npm install
+
+## If you want to run a version on a specific branch
+git checkout <target-branch>
+ # This resets node_modules to match target-branch's package.json.
+npm install
 ```
 
 ## Start the App
